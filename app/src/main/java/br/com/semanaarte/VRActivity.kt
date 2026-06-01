@@ -2,10 +2,11 @@ package br.com.semanaarte
 
 import android.opengl.GLSurfaceView
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import br.com.semanaarte.renderer.GalleryRenderer
 import android.view.Window
 import android.view.WindowManager
+import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
+import br.com.semanaarte.renderer.GalleryRenderer
 
 class VRActivity : AppCompatActivity() {
 
@@ -20,13 +21,16 @@ class VRActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
+        setContentView(R.layout.activity_vr)
+        val container = findViewById<FrameLayout>(R.id.vr_container)
+
         glSurfaceView = GLSurfaceView(this).apply {
             setEGLContextClientVersion(3)
             renderer = GalleryRenderer(this@VRActivity)
             setRenderer(renderer)
         }
         
-        setContentView(glSurfaceView)
+        container.addView(glSurfaceView)
         
         renderer.initSensors()
     }

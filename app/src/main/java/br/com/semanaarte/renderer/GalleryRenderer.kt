@@ -1,6 +1,10 @@
 package br.com.semanaarte.renderer
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -19,35 +23,44 @@ class GalleryRenderer(private val context: Context) : GLSurfaceView.Renderer, Se
     private val mvpMatrix = FloatArray(16)
     private val rotationMatrix = FloatArray(16)
 
-    // Sensor for head tracking
     private lateinit var sensorManager: SensorManager
     private var rotationVectorSensor: Sensor? = null
 
-    // Simple shaders for colored frames
+    private var surfaceWidth = 0
+    private var surfaceHeight = 0
+
     private val vertexShaderCode = """
         uniform mat4 uMVPMatrix;
         attribute vec4 vPosition;
-        attribute vec4 vColor;
-        varying vec4 fColor;
+        attribute vec2 vTexCoord;
+        varying vec2 fTexCoord;
         void main() {
             gl_Position = uMVPMatrix * vPosition;
-            fColor = vColor;
+            fTexCoord = vTexCoord;
         }
     """.trimIndent()
 
     private val fragmentShaderCode = """
         precision mediump float;
-        varying vec4 fColor;
+        varying vec2 fTexCoord;
+        uniform sampler2D uTexture;
         void main() {
-            gl_FragColor = fColor;
+            gl_FragColor = texture2D(uTexture, fTexCoord);
         }
     """.trimIndent()
 
     private var shaderProgram: Int = 0
-    private var isVRMode = true
-
-    // Cube for frames
     private lateinit var frameCube: Cube
+    
+    // Textures for 5 artworks
+    private val textures = IntArray(5)
+    private val artworkTitles = arrayOf(
+        "O Abaporu (1928)",
+        "A Estudante (1921)",
+        "Autorretrato (1923)",
+        "Paisagem c/ Torre",
+        "Composicao (1922)"
+    )
 
     fun initSensors() {
         sensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
@@ -66,7 +79,7 @@ class GalleryRenderer(private val context: Context) : GLSurfaceView.Renderer, Se
     }
 
     override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
-        GLES30.glClearColor(0.1f, 0.1f, 0.1f, 1.0f)
+        GLES30.glClearColor(0.2f, 0.2f, 0.2f, 1.0f)
         GLES30.glEnable(GLES30.GL_DEPTH_TEST)
 
         val vertexShader = loadShader(GLES30.GL_VERTEX_SHADER, vertexShaderCode)
@@ -79,41 +92,80 @@ class GalleryRenderer(private val context: Context) : GLSurfaceView.Renderer, Se
         }
 
         frameCube = Cube()
+
+        // Generate textures for the 5 artworks
+        for (i in 0 until 5) {
+            textures[i] = createTextureFromString(artworkTitles[i])
+        }
+    }
+
+    private fun createTextureFromString(text: String): Int {
+        val bitmap = Bitmap.createBitmap(512, 512, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        canvas.drawColor(Color.parseColor("#E0E0E0")) // Canvas background
+        
+        val paint = Paint().apply {
+            color = Color.parseColor("#3E2723") // Frame color
+            style = Paint.Style.STROKE
+            strokeWidth = 30f
+        }
+        canvas.drawRect(15f, 15f, 497f, 497f, paint) // Draw frame
+        
+        paint.apply {
+            style = Paint.Style.FILL
+            textSize = 40f
+            textAlign = Paint.Align.CENTER
+        }
+        canvas.drawText(text, 256f, 256f, paint)
+
+        val textureHandle = IntArray(1)
+        GLES30.glGenTextures(1, textureHandle, 0)
+        GLES30.glBindTexture(GLES30.GL_TEXTURE_2D, textureHandle[0])
+        GLES30.glTexParameteri(GLES30.GL_TEXTURE_2D, GLES30.GL_TEXTURE_MIN_FILTER, GLES30.GL_LINEAR)
+        GLES30.glTexParameteri(GLES30.GL_TEXTURE_2D, GLES30.GL_TEXTURE_MAG_FILTER, GLES30.GL_LINEAR)
+        android.opengl.GLUtils.texImage2D(GLES30.GL_TEXTURE_2D, 0, bitmap, 0)
+        bitmap.recycle()
+        return textureHandle[0]
     }
 
     override fun onSurfaceChanged(gl: GL10?, width: Int, height: Int) {
-        // Handled in onDrawFrame for VR split screen
+        surfaceWidth = width
+        surfaceHeight = height
+        // Projection matrix is set inside drawSceneForEye per viewport aspect ratio
     }
 
     override fun onDrawFrame(gl: GL10?) {
-        GLES30.glClear(GLES30.GL_COLOR_BUFFER_BIT or GLES30.GL_DEPTH_BUFFER_BIT)
+        if (surfaceWidth == 0 || surfaceHeight == 0) return
 
-        val viewport = IntArray(4)
-        GLES30.glGetIntegerv(GLES30.GL_VIEWPORT, viewport, 0)
+        GLES30.glClear(GLES30.GL_COLOR_BUFFER_BIT or GLES30.GL_DEPTH_BUFFER_BIT)
         
-        val width = viewport[2]
-        val height = viewport[3]
+        val width = surfaceWidth
+        val height = surfaceHeight
         
         // Render Left Eye
         GLES30.glViewport(0, 0, width / 2, height)
-        drawSceneForEye(-0.1f) // slight offset for left eye
+        drawSceneForEye(-0.05f, width / 2, height)
 
         // Render Right Eye
         GLES30.glViewport(width / 2, 0, width / 2, height)
-        drawSceneForEye(0.1f) // slight offset for right eye
+        drawSceneForEye(0.05f, width / 2, height)
         
         // Restore viewport
         GLES30.glViewport(0, 0, width, height)
     }
 
-    private fun drawSceneForEye(eyeOffsetX: Float) {
+    private fun drawSceneForEye(eyeOffsetX: Float, width: Int, height: Int) {
+        val ratio = width.toFloat() / height.toFloat()
+        Matrix.perspectiveM(projectionMatrix, 0, 70f, ratio, 0.1f, 100f)
+
         Matrix.setIdentityM(viewMatrix, 0)
         // Apply sensor rotation
         val scratch = FloatArray(16)
         Matrix.multiplyMM(scratch, 0, viewMatrix, 0, rotationMatrix, 0)
         System.arraycopy(scratch, 0, viewMatrix, 0, 16)
+        
         // Move camera back a bit and add eye offset
-        Matrix.translateM(viewMatrix, 0, eyeOffsetX, 0f, -1.0f)
+        Matrix.translateM(viewMatrix, 0, eyeOffsetX, 0f, 0f)
         
         GLES30.glUseProgram(shaderProgram)
 
@@ -121,15 +173,13 @@ class GalleryRenderer(private val context: Context) : GLSurfaceView.Renderer, Se
         for (i in 0 until 5) {
             Matrix.setIdentityM(modelMatrix, 0)
             Matrix.rotateM(modelMatrix, 0, i * 72f, 0f, 1f, 0f)
-            Matrix.translateM(modelMatrix, 0, 0f, 0f, -5f)
+            Matrix.translateM(modelMatrix, 0, 0f, 0f, -8f) // Move out to form a circle
             
-            Matrix.multiplyMM(mvpMatrix, 0, viewMatrix, 0, modelMatrix, 0)
+            val tempMatrix = FloatArray(16)
+            Matrix.multiplyMM(tempMatrix, 0, viewMatrix, 0, modelMatrix, 0)
+            Matrix.multiplyMM(mvpMatrix, 0, projectionMatrix, 0, tempMatrix, 0)
             
-            // Note: properly we should apply projectionMatrix here.
-            // For a basic MVP without projection, it might look distorted,
-            // but it serves as a basic proof of concept.
-            
-            frameCube.draw(shaderProgram, mvpMatrix)
+            frameCube.draw(shaderProgram, mvpMatrix, textures[i])
         }
     }
 
