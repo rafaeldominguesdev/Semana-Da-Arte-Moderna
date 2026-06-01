@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "br.com.semanaarte.app-merged_res-31:/xml_data_extraction_rules.xml.flat",
+        "source": "br.com.semanaarte.app-main-33:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "br.com.semanaarte.app-merged_res-31:/xml_backup_rules.xml.flat",
+        "source": "br.com.semanaarte.app-main-33:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "br.com.semanaarte.app-merged_res-31:/drawable_obra_placeholder.xml.flat",
+        "source": "br.com.semanaarte.app-main-33:/drawable/obra_placeholder.xml"
+    },
+    {
+        "merged": "br.com.semanaarte.app-merged_res-31:/layout_activity_main.xml.flat",
+        "source": "br.com.semanaarte.app-main-33:/layout/activity_main.xml"
+    },
+    {
+        "merged": "br.com.semanaarte.app-merged_res-31:/layout_activity_vr.xml.flat",
+        "source": "br.com.semanaarte.app-main-33:/layout/activity_vr.xml"
+    }
+]

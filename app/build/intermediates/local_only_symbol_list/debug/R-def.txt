@@ -1,0 +1,13 @@
+R_DEF: Internal format may change without notice
+local
+drawable obra_placeholder
+id btnEnterVR
+id tvTitle
+id vr_container
+layout activity_main
+layout activity_vr
+string app_name
+style Theme.SemanaArte
+style Theme.SemanaArte.Fullscreen
+xml backup_rules
+xml data_extraction_rules

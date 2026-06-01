@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "br.com.semanaarte.app-mergeDebugResources-30:/layout/activity_vr.xml",
+        "source": "br.com.semanaarte.app-main-33:/layout/activity_vr.xml"
+    },
+    {
+        "merged": "br.com.semanaarte.app-mergeDebugResources-30:/layout/activity_main.xml",
+        "source": "br.com.semanaarte.app-main-33:/layout/activity_main.xml"
+    }
+]
