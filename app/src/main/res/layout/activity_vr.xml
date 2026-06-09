@@ -1,27 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000">
 
-    <!-- Cardboard View is typically added dynamically or via custom view -->
+    <!-- ─── Superfície OpenGL GL ──────────────────────────────────────────── -->
     <FrameLayout
         android:id="@+id/vr_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <!-- Overlay for Reticle (Gaze) -->
-    <ImageView
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:src="@android:drawable/presence_online"
-        android:tint="#FFFFFF"
-        android:alpha="0.7"
-        android:layout_gravity="center"
+    <!-- ─── Crosshair / Reticle Central ──────────────────────────────────── -->
+    <!-- Ponto branco centralizado que indica o centro do campo de visão -->
+    <View
+        android:id="@+id/crosshair"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:background="@drawable/crosshair_circle"
+        android:alpha="0.85"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ─── Indicador "Olhe para Baixo" ──────────────────────────────────── -->
+    <!-- Seta animada que aparece no início para ensinar a mecânica de movimento -->
+    <LinearLayout
+        android:id="@+id/gaze_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:alpha="0.0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto" />
+        app:layout_constraintVertical_bias="0.65">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Olhe para baixo\npara caminhar"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:fontFamily="sans-serif-light"
+            android:shadowColor="#000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="3" />
+
+        <TextView
+            android:id="@+id/gaze_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="↓"
+            android:textColor="#FFD700"
+            android:textSize="32sp"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <!-- ─── Painel de Informações do Quadro ───────────────────────────────── -->
+    <!-- Aparece quando o player se aproxima de um quadro (fade in/out suave) -->
+    <FrameLayout
+        android:id="@+id/painting_panel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:alpha="0.0"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- Fundo semi-transparente com cantos arredondados -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/panel_background"
+            android:padding="16dp">
+
+            <!-- Cabeçalho: Título da Obra -->
+            <TextView
+                android:id="@+id/painting_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Título da Obra"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="2"
+                android:ellipsize="end" />
+
+            <!-- Artista e Ano -->
+            <TextView
+                android:id="@+id/painting_artist_year"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Artista • 1922"
+                android:textColor="#FFD700"
+                android:textSize="13sp"
+                android:fontFamily="sans-serif-light" />
+
+            <!-- Divisor -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#44FFFFFF" />
+
+            <!-- Descrição (limitada a 4 linhas) -->
+            <TextView
+                android:id="@+id/painting_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descrição da obra..."
+                android:textColor="#E0E0E0"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif"
+                android:lineSpacingMultiplier="1.4"
+                android:maxLines="4"
+                android:ellipsize="end" />
+
+            <!-- Curiosidade (opcional) -->
+            <TextView
+                android:id="@+id/painting_fun_fact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text=""
+                android:textColor="#AADDFF"
+                android:textSize="11sp"
+                android:fontFamily="sans-serif-light"
+                android:fontStyle="italic"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:visibility="gone" />
+
+            <!-- Botões -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:gravity="end">
+
+                <Button
+                    android:id="@+id/btn_calibrate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Calibrar"
+                    android:textSize="12sp"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="#44FFFFFF"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp" />
+
+                <Button
+                    android:id="@+id/btn_close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="Fechar"
+                    android:textSize="12sp"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="#CC3D1E"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- ─── Botão de Calibração Flutuante (sempre visível) ───────────────── -->
+    <Button
+        android:id="@+id/btn_calibrate_floating"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_margin="12dp"
+        android:text="⊕ Calibrar"
+        android:textSize="11sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#66000000"
+        android:alpha="0.7"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
