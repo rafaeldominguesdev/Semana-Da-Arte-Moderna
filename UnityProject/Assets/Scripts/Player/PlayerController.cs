@@ -25,6 +25,7 @@ namespace MuseumModerna
     ///   2. Arraste as referências de GyroscopeController e HeadGazeMovement.
     ///   3. Chame Calibrate() via botão de UI para recalibrar o giroscópio.
     /// </summary>
+    [RequireComponent(typeof(CharacterController))]
     public class PlayerController : MonoBehaviour
     {
         // ─── Configurações no Inspector ───────────────────────────────────────
@@ -63,13 +64,10 @@ namespace MuseumModerna
 
         // ─── Variáveis Privadas ────────────────────────────────────────────────
 
-        // Timer para controlar o intervalo de detecção
         private float _detectionTimer = 0f;
-
-        // Referência ao último quadro próximo (para detectar mudança de estado)
         private GameObject _lastNearPaintingObject = null;
 
-        // Colliders reutilizáveis para OverlapSphere (evita alocação de array todo frame)
+        // Reutiliza array para evitar garbage collection por frame
         private readonly Collider[] _overlapResults = new Collider[5];
 
         // ─── Ciclo de Vida Unity ──────────────────────────────────────────────
@@ -83,38 +81,37 @@ namespace MuseumModerna
             if (headGazeMovement == null)
                 headGazeMovement = GetComponent<HeadGazeMovement>();
 
-            // Valida referências críticas
             if (gyroController == null)
-                Debug.LogError("[MuseumModerna] PlayerController: GyroscopeController não encontrado!");
+                Debug.LogError("[MuseumModerna] PlayerController: GyroscopeController não encontrado! Adicione-o à câmera.", this);
 
             if (headGazeMovement == null)
-                Debug.LogError("[MuseumModerna] PlayerController: HeadGazeMovement não encontrado!");
+                Debug.LogError("[MuseumModerna] PlayerController: HeadGazeMovement não encontrado!", this);
+
+            // Se paintingLayer não foi configurado, tenta encontrar automaticamente
+            if (paintingLayer.value == 0)
+            {
+                int layerIndex = LayerMask.NameToLayer("Painting");
+                if (layerIndex >= 0)
+                    paintingLayer = 1 << layerIndex;
+                else
+                    Debug.LogWarning("[MuseumModerna] Layer 'Painting' não encontrada! Crie-a em Edit → Project Settings → Tags and Layers.", this);
+            }
         }
 
         private void Update()
         {
             if (State == PlayerState.Paused) return;
 
-            // Atualiza timer de detecção
             _detectionTimer += Time.deltaTime;
-
-            // Só verifica quadros no intervalo definido (evita overhead)
             if (_detectionTimer >= detectionInterval)
             {
                 _detectionTimer = 0f;
                 CheckNearbyPaintings();
             }
-
-            // Atualiza o estado de movimento baseado no estado do player
-            UpdateMovementBasedOnState();
         }
 
         // ─── Detecção de Quadros ──────────────────────────────────────────────
 
-        /// <summary>
-        /// Verifica se há quadros dentro do raio de detecção usando OverlapSphere.
-        /// Reutiliza array para evitar garbage collection.
-        /// </summary>
         private void CheckNearbyPaintings()
         {
             int count = Physics.OverlapSphereNonAlloc(
@@ -126,14 +123,12 @@ namespace MuseumModerna
 
             if (count > 0)
             {
-                // Encontrou quadro(s) próximo(s)
                 GameObject nearestPainting = FindNearestPainting(count);
 
                 if (nearestPainting != _lastNearPaintingObject)
                 {
                     _lastNearPaintingObject = nearestPainting;
 
-                    // Tenta obter o PaintingInfo do quadro encontrado
                     PaintingExhibit exhibit = nearestPainting.GetComponent<PaintingExhibit>();
                     if (exhibit != null && exhibit.PaintingData != null)
                     {
@@ -146,7 +141,6 @@ namespace MuseumModerna
             }
             else
             {
-                // Nenhum quadro próximo
                 if (_lastNearPaintingObject != null)
                 {
                     _lastNearPaintingObject = null;
@@ -158,9 +152,6 @@ namespace MuseumModerna
             }
         }
 
-        /// <summary>
-        /// Dentre os colisores encontrados, retorna o mais próximo do player.
-        /// </summary>
         private GameObject FindNearestPainting(int count)
         {
             GameObject nearest = _overlapResults[0].gameObject;
@@ -168,6 +159,7 @@ namespace MuseumModerna
 
             for (int i = 1; i < count; i++)
             {
+                if (_overlapResults[i] == null) continue;
                 float dist = Vector3.Distance(transform.position, _overlapResults[i].transform.position);
                 if (dist < nearestDist)
                 {
@@ -181,9 +173,6 @@ namespace MuseumModerna
 
         // ─── Gerenciamento de Estado ──────────────────────────────────────────
 
-        /// <summary>
-        /// Define o novo estado do player e atualiza os sistemas relacionados.
-        /// </summary>
         private void SetState(PlayerState newState)
         {
             if (State == newState) return;
@@ -193,31 +182,17 @@ namespace MuseumModerna
             switch (newState)
             {
                 case PlayerState.Walking:
-                    // Permite movimento ao caminhar
                     headGazeMovement?.SetMovementEnabled(true);
                     break;
-
                 case PlayerState.Viewing:
-                    // Trava movimento ao visualizar um quadro
                     headGazeMovement?.SetMovementEnabled(false);
                     break;
-
                 case PlayerState.Paused:
-                    // Trava tudo ao pausar
                     headGazeMovement?.SetMovementEnabled(false);
                     break;
             }
 
             Debug.Log($"[MuseumModerna] Estado do player: {newState}");
-        }
-
-        /// <summary>
-        /// Garante que o movimento só ocorre no estado Walking.
-        /// </summary>
-        private void UpdateMovementBasedOnState()
-        {
-            // O HeadGazeMovement já é controlado via SetMovementEnabled,
-            // mas aqui podemos adicionar lógica extra se necessário.
         }
 
         // ─── API Pública ──────────────────────────────────────────────────────
@@ -232,9 +207,7 @@ namespace MuseumModerna
             Debug.Log("[MuseumModerna] Calibração realizada via PlayerController.");
         }
 
-        /// <summary>
-        /// Pausa ou despausa o player.
-        /// </summary>
+        /// <summary>Pausa ou despausa o player.</summary>
         public void SetPaused(bool paused)
         {
             SetState(paused ? PlayerState.Paused : PlayerState.Walking);
@@ -245,27 +218,11 @@ namespace MuseumModerna
 #if UNITY_EDITOR
         private void OnDrawGizmosSelected()
         {
-            // Visualiza o raio de detecção de quadros
             Gizmos.color = new Color(1f, 0.8f, 0f, 0.3f);
             Gizmos.DrawSphere(transform.position, paintingDetectionRadius);
             Gizmos.color = new Color(1f, 0.8f, 0f, 1f);
             Gizmos.DrawWireSphere(transform.position, paintingDetectionRadius);
         }
 #endif
-    }
-
-    // ─── Componente Auxiliar ──────────────────────────────────────────────────
-
-    /// <summary>
-    /// Componente que deve ser adicionado ao GameObject de cada quadro na cena.
-    /// Associa o objeto 3D com seus dados (PaintingInfo).
-    /// </summary>
-    public class PaintingExhibit : MonoBehaviour
-    {
-        [Tooltip("ScriptableObject com as informações deste quadro")]
-        [SerializeField] private PaintingInfo paintingData;
-
-        /// <summary>Dados deste quadro (título, artista, descrição, etc).</summary>
-        public PaintingInfo PaintingData => paintingData;
     }
 }
