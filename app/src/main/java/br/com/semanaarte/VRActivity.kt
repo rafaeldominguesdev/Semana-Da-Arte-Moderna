@@ -112,8 +112,7 @@ class VRActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Configuração de tela cheia imersiva
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        // Configuração de tela cheia imersiva (o tema já é NoActionBar)
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
             // API 30+: usa WindowInsetsController (API moderna)
