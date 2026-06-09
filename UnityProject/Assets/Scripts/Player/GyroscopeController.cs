@@ -80,7 +80,7 @@ namespace MuseumModerna
 
         // ─── Ciclo de Vida Unity ──────────────────────────────────────────────
 
-        private void Start()
+        private void Awake()
         {
             InitGyro();
 
@@ -123,9 +123,13 @@ namespace MuseumModerna
         /// </summary>
         private void InitGyro()
         {
+            // Impede que a tela apague durante o uso do giroscópio em VR
+            Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
             if (SystemInfo.supportsGyroscope)
             {
                 Input.gyro.enabled = true;
+                Input.gyro.updateInterval = 0.0167f; // 60fps
                 IsUsingGyroscope = true;
                 Debug.Log("[MuseumModerna] Giroscópio ativado com sucesso.");
             }
@@ -278,9 +282,17 @@ namespace MuseumModerna
 
         // ─── Cleanup ──────────────────────────────────────────────────────────
 
+        private void OnApplicationPause(bool paused)
+        {
+            if (IsUsingGyroscope && SystemInfo.supportsGyroscope)
+            {
+                Input.gyro.enabled = !paused;
+            }
+        }
+
         private void OnDestroy()
         {
-            if (IsUsingGyroscope)
+            if (IsUsingGyroscope && SystemInfo.supportsGyroscope)
             {
                 Input.gyro.enabled = false;
             }

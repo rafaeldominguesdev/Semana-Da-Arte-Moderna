@@ -134,7 +134,8 @@ namespace MuseumModerna
             if (gazeIndicator != null)
             {
                 gazeIndicator.SetActive(true);
-                StartCoroutine(HideGazeIndicatorAfterDelay(indicatorShowDuration));
+                if (gameObject.activeInHierarchy)
+                    StartCoroutine(HideGazeIndicatorAfterDelay(indicatorShowDuration));
             }
         }
 
@@ -219,7 +220,17 @@ namespace MuseumModerna
             if (_currentFadeCoroutine != null)
                 StopCoroutine(_currentFadeCoroutine);
 
-            _currentFadeCoroutine = StartCoroutine(FadePanelCoroutine(fadeIn));
+            if (gameObject.activeInHierarchy)
+            {
+                _currentFadeCoroutine = StartCoroutine(FadePanelCoroutine(fadeIn));
+            }
+            else
+            {
+                // Fallback caso objeto esteja inativo
+                if (paintingPanel != null) paintingPanel.SetActive(fadeIn);
+                if (paintingPanelCanvasGroup != null)
+                    paintingPanelCanvasGroup.alpha = fadeIn ? 1f : 0f;
+            }
         }
 
         /// <summary>
@@ -296,7 +307,8 @@ namespace MuseumModerna
             if (gazeIndicator != null)
             {
                 gazeIndicator.SetActive(true);
-                StartCoroutine(HideGazeIndicatorAfterDelay(2f));
+                if (gameObject.activeInHierarchy)
+                    StartCoroutine(HideGazeIndicatorAfterDelay(2f));
             }
 
             Debug.Log("[MuseumModerna] UIManager: Calibração solicitada pelo usuário.");

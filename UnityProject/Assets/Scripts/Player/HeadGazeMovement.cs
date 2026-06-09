@@ -136,7 +136,10 @@ namespace MuseumModerna
             Vector3 totalMove = new Vector3(horizontalMove.x, _verticalVelocity * Time.deltaTime, horizontalMove.z);
 
             // Move usando CharacterController (resolve colisões automaticamente)
-            _characterController.Move(totalMove);
+            if (_characterController != null)
+            {
+                _characterController.Move(totalMove);
+            }
         }
 
         /// <summary>
@@ -148,8 +151,11 @@ namespace MuseumModerna
             if (_currentSpeed < 0.01f) _currentSpeed = 0f;
 
             // Ainda aplica gravidade
-            Vector3 gravMove = new Vector3(0f, _verticalVelocity * Time.deltaTime, 0f);
-            _characterController.Move(gravMove);
+            if (_characterController != null)
+            {
+                Vector3 gravMove = new Vector3(0f, _verticalVelocity * Time.deltaTime, 0f);
+                _characterController.Move(gravMove);
+            }
         }
 
         /// <summary>
@@ -157,7 +163,7 @@ namespace MuseumModerna
         /// </summary>
         private void ApplyGravity()
         {
-            if (_characterController.isGrounded)
+            if (_characterController != null && _characterController.isGrounded)
             {
                 // Reseta velocidade vertical quando no chão (mantém leve valor negativo para detectar chão)
                 _verticalVelocity = -2f;

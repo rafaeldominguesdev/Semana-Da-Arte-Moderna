@@ -105,7 +105,11 @@ namespace MuseumModerna
             PaintingExhibit exhibit = FindExhibitByInfo(paintingInfo);
             if (exhibit != null)
             {
-                ApplyHighlight(exhibit.GetComponent<Renderer>());
+                Renderer rend = exhibit.GetComponent<Renderer>();
+                if (rend != null)
+                {
+                    ApplyHighlight(rend);
+                }
             }
 
             // Registra como visitado
