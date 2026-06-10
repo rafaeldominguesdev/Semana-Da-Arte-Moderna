@@ -25,7 +25,6 @@ namespace MuseumModerna
     ///   2. Arraste as referências de GyroscopeController e HeadGazeMovement.
     ///   3. Chame Calibrate() via botão de UI para recalibrar o giroscópio.
     /// </summary>
-    [RequireComponent(typeof(CharacterController))]
     public class PlayerController : MonoBehaviour
     {
         // ─── Configurações no Inspector ───────────────────────────────────────

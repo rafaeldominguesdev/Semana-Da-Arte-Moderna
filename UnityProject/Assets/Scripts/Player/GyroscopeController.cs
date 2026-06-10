@@ -105,8 +105,8 @@ namespace MuseumModerna
             // Extrai o pitch atual para verificar "olhar para baixo"
             CurrentPitchDegrees = GetPitchFromQuaternion(_currentRotation);
 
-            // Limita pitch entre pitchMin e pitchMax
-            _currentRotation = ClampPitch(_currentRotation, pitchMin, pitchMax);
+            // Removido: ClampPitch causava gimbal lock e impedia o giro 360 livre no celular
+            // _currentRotation = ClampPitch(_currentRotation, pitchMin, pitchMax);
 
             // Atualiza propriedades públicas
             IsLookingDown = CurrentPitchDegrees < lookDownThreshold;

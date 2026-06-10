@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 namespace MuseumModerna
 {
@@ -31,16 +30,16 @@ namespace MuseumModerna
         [SerializeField] private CanvasGroup paintingPanelCanvasGroup;
 
         [Tooltip("Texto do título da obra")]
-        [SerializeField] private TextMeshProUGUI titleText;
+        [SerializeField] private Text titleText;
 
         [Tooltip("Texto do artista")]
-        [SerializeField] private TextMeshProUGUI artistText;
+        [SerializeField] private Text artistText;
 
         [Tooltip("Texto do ano")]
-        [SerializeField] private TextMeshProUGUI yearText;
+        [SerializeField] private Text yearText;
 
         [Tooltip("Texto da descrição (suporta scroll)")]
-        [SerializeField] private TextMeshProUGUI descriptionText;
+        [SerializeField] private Text descriptionText;
 
         [Tooltip("Imagem de miniatura da obra (opcional)")]
         [SerializeField] private Image thumbnailImage;

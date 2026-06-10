@@ -12,7 +12,6 @@ namespace MuseumModerna
     ///   2. O Player deve ter um CharacterController anexado.
     ///   3. Arraste o GyroscopeController para o campo gyroController no Inspector.
     /// </summary>
-    [RequireComponent(typeof(CharacterController))]
     public class HeadGazeMovement : MonoBehaviour
     {
         // ─── Configurações no Inspector ───────────────────────────────────────
