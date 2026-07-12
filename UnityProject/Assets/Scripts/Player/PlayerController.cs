@@ -37,13 +37,16 @@ namespace MuseumModerna
         [SerializeField] private HeadGazeMovement headGazeMovement;
 
         [Header("Detecção de Quadros")]
-        [Tooltip("Raio em metros para detectar quadros próximos")]
+        [Tooltip("Se true, GazeDwellInteraction controla a ativação (olhar por X segundos). Se false, usa proximidade.")]
+        [SerializeField] private bool useGazeDwell = true;
+
+        [Tooltip("Raio em metros para detectar quadros próximos (usado só quando useGazeDwell = false)")]
         [SerializeField] private float paintingDetectionRadius = 2f;
 
         [Tooltip("Layer Mask dos quadros (configure a layer 'Painting' no Editor)")]
         [SerializeField] private LayerMask paintingLayer;
 
-        [Tooltip("Intervalo em segundos entre cada verificação de proximidade (0 = todo frame)")]
+        [Tooltip("Intervalo em segundos entre cada verificação de proximidade (usado só quando useGazeDwell = false)")]
         [SerializeField] private float detectionInterval = 0.2f;
 
         [Header("Eventos")]
@@ -101,11 +104,14 @@ namespace MuseumModerna
         {
             if (State == PlayerState.Paused) return;
 
-            _detectionTimer += Time.deltaTime;
-            if (_detectionTimer >= detectionInterval)
+            if (!useGazeDwell)
             {
-                _detectionTimer = 0f;
-                CheckNearbyPaintings();
+                _detectionTimer += Time.deltaTime;
+                if (_detectionTimer >= detectionInterval)
+                {
+                    _detectionTimer = 0f;
+                    CheckNearbyPaintings();
+                }
             }
         }
 
@@ -211,6 +217,27 @@ namespace MuseumModerna
         {
             SetState(paused ? PlayerState.Paused : PlayerState.Walking);
         }
+
+        /// <summary>Chamado pelo GazeDwellInteraction ao confirmar que o olhar ficou sobre um quadro.</summary>
+        public void TriggerNearPainting(PaintingInfo info)
+        {
+            if (info == null) return;
+            CurrentNearPainting = info;
+            SetState(PlayerState.Viewing);
+            OnNearPainting?.Invoke(info);
+        }
+
+        /// <summary>Chamado pelo GazeDwellInteraction quando o olhar sai do quadro.</summary>
+        public void TriggerLeavePainting()
+        {
+            if (State != PlayerState.Viewing) return;
+            CurrentNearPainting = null;
+            SetState(PlayerState.Walking);
+            OnLeavePainting?.Invoke();
+        }
+
+        /// <summary>LayerMask dos quadros — compartilhada com GazeDwellInteraction.</summary>
+        public LayerMask PaintingLayer => paintingLayer;
 
         // ─── Debug Visual ─────────────────────────────────────────────────────
 

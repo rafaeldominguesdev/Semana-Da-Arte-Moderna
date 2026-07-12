@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
+  m_Name: brecheret_bandeiras
+  m_EditorClassIdentifier: 
+  title: "Monumento \xE0s Bandeiras \u2014 Estudo Preliminar"
+  artist: Victor Brecheret
+  year: 1920
+  movement: Modernismo Monumental
+  description: "O estudo para o Monumento \xE0s Bandeiras \xE9 uma das obras mais
+    ambiciosas da arte brasileira. Brecheret prop\xF5e um grupo escult\xF3rico monumental
+    retratando os bandeirantes com uma for\xE7a \xE9pica e uma estiliza\xE7\xE3o
+    modernista que rompe com os monumentos historicistas do s\xE9culo XIX."
+  funFact: "O Monumento s\xF3 foi inaugurado no Parque do Ibirapuera em 1953 \u2014
+    mais de 30 anos ap\xF3s o primeiro estudo."
+  paintingTexture: {fileID: 0}
+  thumbnailSprite: {fileID: 0}
+  audioGuide: {fileID: 0}
+  audioDuration: 0
+  uniqueId: brecheret_bandeiras
+  suggestedViewOffset: {x: 0, y: 0, z: 2}

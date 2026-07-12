@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
+  m_Name: homem_amarelo
+  m_EditorClassIdentifier: 
+  title: O Homem Amarelo
+  artist: Anita Malfatti
+  year: 1916
+  movement: Expressionismo
+  description: "Uma das obras mais radicais de Anita, O Homem Amarelo demonstra o
+    dom\xEDnio das t\xE9cnicas expressionistas aprendidas na Alemanha e em Nova York.
+    As cores anti-naturalistas \u2014 rosto amarelo-esverdeado, olhos azuis intensos
+    \u2014 foram consideradas um esc\xE2ndalo pela cr\xEDtica de S\xE3o Paulo em
+    1917."
+  funFact: "O cr\xEDtico Monteiro Lobato atacou esta obra em 'Paranoia ou Mistifica\xE7\xE3o?'
+    (1917), tornando Anita a hero\xEDna do Modernismo."
+  paintingTexture: {fileID: 0}
+  thumbnailSprite: {fileID: 0}
+  audioGuide: {fileID: 0}
+  audioDuration: 0
+  uniqueId: homem_amarelo
+  suggestedViewOffset: {x: 0, y: 0, z: 2}

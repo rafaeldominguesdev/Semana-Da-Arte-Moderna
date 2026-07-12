@@ -23,6 +23,16 @@ namespace MuseumModerna
         [Tooltip("Referência ao UIManager para mostrar painéis")]
         [SerializeField] private UIManager uiManager;
 
+        [Header("Áudio Guide")]
+        [Tooltip("AudioSource para reprodução do guia de áudio. Criado automaticamente se vazio.")]
+        [SerializeField] private AudioSource audioGuideSource;
+
+        [Tooltip("Volume do guia de áudio (0 a 1)")]
+        [SerializeField] private float audioGuideVolume = 1f;
+
+        [Tooltip("Fade in/out do áudio em segundos")]
+        [SerializeField] private float audioFadeDuration = 0.8f;
+
         [Header("Highlighting")]
         [Tooltip("Intensidade do brilho (emission) no quadro focado")]
         [SerializeField] private float highlightIntensity = 0.4f;
@@ -53,8 +63,16 @@ namespace MuseumModerna
 
         private void Awake()
         {
-            // Inicializa o MaterialPropertyBlock (não cria cópia do material)
             _propBlock = new MaterialPropertyBlock();
+
+            if (audioGuideSource == null)
+            {
+                audioGuideSource = gameObject.AddComponent<AudioSource>();
+                audioGuideSource.loop = false;
+                audioGuideSource.playOnAwake = false;
+                audioGuideSource.spatialBlend = 0f; // 2D — ouve igual em qualquer posição
+                audioGuideSource.volume = audioGuideVolume;
+            }
         }
 
         private void Start()
@@ -112,28 +130,39 @@ namespace MuseumModerna
                 }
             }
 
+            // Reproduz o guia de áudio e reduz a música de fundo
+            if (paintingInfo.HasAudioGuide && audioGuideSource != null)
+            {
+                StopAllCoroutines();
+                audioGuideSource.clip = paintingInfo.audioGuide;
+                audioGuideSource.volume = 0f;
+                audioGuideSource.Play();
+                StartCoroutine(FadeAudio(0f, audioGuideVolume, audioFadeDuration));
+                AmbientAudioManager.Instance?.DuckMusicForNarration();
+            }
+
             // Registra como visitado
             if (!string.IsNullOrEmpty(paintingInfo.uniqueId))
             {
                 bool isFirstVisit = _visitedPaintings.Add(paintingInfo.uniqueId);
                 if (isFirstVisit)
-                {
                     Debug.Log($"[MuseumModerna] Primeira visita à obra: {paintingInfo.title}");
-                    // TODO: pode disparar um achievement/animação especial aqui
-                }
             }
         }
 
-        /// <summary>
-        /// Chamado quando o player se afasta de um quadro.
-        /// </summary>
         private void OnPlayerLeavePainting()
         {
-            // Esconde o painel de informações
             uiManager?.HidePaintingPanel();
-
-            // Remove highlight
             RemoveHighlight();
+
+            // Fade out do áudio e restaura música de fundo
+            if (audioGuideSource != null && audioGuideSource.isPlaying)
+            {
+                StopAllCoroutines();
+                StartCoroutine(FadeAudio(audioGuideSource.volume, 0f, audioFadeDuration,
+                    onComplete: () => audioGuideSource.Stop()));
+                AmbientAudioManager.Instance?.RestoreMusicVolume();
+            }
         }
 
         // ─── Highlighting ─────────────────────────────────────────────────────
@@ -196,11 +225,30 @@ namespace MuseumModerna
             return null;
         }
 
+        // ─── Áudio Guide API ──────────────────────────────────────────────────
+
+        public void PlayAudioGuide()  => audioGuideSource?.Play();
+        public void PauseAudioGuide() => audioGuideSource?.Pause();
+        public void StopAudioGuide()  => audioGuideSource?.Stop();
+        public bool IsPlayingAudio    => audioGuideSource != null && audioGuideSource.isPlaying;
+
+        private System.Collections.IEnumerator FadeAudio(float from, float to, float duration, System.Action onComplete = null)
+        {
+            float elapsed = 0f;
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                if (audioGuideSource != null)
+                    audioGuideSource.volume = Mathf.Lerp(from, to, elapsed / duration);
+                yield return null;
+            }
+            if (audioGuideSource != null)
+                audioGuideSource.volume = to;
+            onComplete?.Invoke();
+        }
+
         // ─── API Pública ──────────────────────────────────────────────────────
 
-        /// <summary>
-        /// Retorna quantos quadros únicos foram visitados nesta sessão.
-        /// </summary>
         public int VisitedCount => _visitedPaintings.Count;
 
         /// <summary>

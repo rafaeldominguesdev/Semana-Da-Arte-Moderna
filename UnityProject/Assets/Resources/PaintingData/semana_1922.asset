@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
+  m_Name: semana_1922
+  m_EditorClassIdentifier: 
+  title: Semana de Arte Moderna de 1922
+  artist: "Organiza\xE7\xE3o: Di Cavalcanti \xB7 M\xE1rio de Andrade \xB7 Gra\xE7a
+    Aranha"
+  year: 1922
+  movement: Modernismo Brasileiro
+  description: "Realizada entre 13 e 17 de fevereiro de 1922 no Teatro Municipal
+    de S\xE3o Paulo, a Semana de Arte Moderna marcou a ruptura com o conservadorismo
+    art\xEDstico e o in\xEDcio do Modernismo no Brasil. O evento reuniu pintores,
+    escultores, poetas e m\xFAsicos que buscavam uma arte genuinamente brasileira,
+    livre das c\xF3pias do s\xE9culo XIX."
+  funFact: "'As vaias foram o maior elogio que poder\xEDamos receber.' \u2014 Em\xEDlio
+    di Cavalcanti"
+  paintingTexture: {fileID: 0}
+  thumbnailSprite: {fileID: 0}
+  audioGuide: {fileID: 0}
+  audioDuration: 0
+  uniqueId: semana_1922
+  suggestedViewOffset: {x: 0, y: 0, z: 2}

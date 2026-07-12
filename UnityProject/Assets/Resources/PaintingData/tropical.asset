@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
+  m_Name: tropical
+  m_EditorClassIdentifier: 
+  title: Tropical
+  artist: Anita Malfatti
+  year: 1917
+  movement: Expressionismo
+  description: "Em Tropical, Anita cria uma paisagem brasileira com cores saturadas
+    e vibrantes. A vegeta\xE7\xE3o densa e exuberante \xE9 tratada com a liberdade
+    formal do expressionismo \u2014 formas simplificadas e cores emocionalmente intensas,
+    n\xE3o meramente descritivas. A obra celebra o tr\xF3pico como experi\xEAncia
+    sensorial radical."
+  funFact: "Esta obra foi exposta na pol\xEAmica exposi\xE7\xE3o de 1917 que gerou
+    o artigo destruidor de Monteiro Lobato."
+  paintingTexture: {fileID: 0}
+  thumbnailSprite: {fileID: 0}
+  audioGuide: {fileID: 0}
+  audioDuration: 0
+  uniqueId: tropical
+  suggestedViewOffset: {x: 0, y: 0, z: 2}

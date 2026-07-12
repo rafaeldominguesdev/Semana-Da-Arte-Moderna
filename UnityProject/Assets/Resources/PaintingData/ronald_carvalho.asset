@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
+  m_Name: ronald_carvalho
+  m_EditorClassIdentifier: 
+  title: "Poemas \u2014 Toda a Am\xE9rica"
+  artist: Ronald de Carvalho
+  year: 1922
+  movement: Modernismo
+  description: "Ronald de Carvalho foi o \xFAnico participante que integrou tanto
+    a Semana de 22 quanto os modernistas cariocas, servindo de ponte entre os dois
+    centros culturais. Em 'Toda a Am\xE9rica', busca uma epopeia pan-americana que
+    celebre as origens ind\xEDgenas e a natureza exuberante do continente."
+  funFact: "Ronald de Carvalho foi um dos primeiros a traduzir Guillaume Apollinaire
+    para o portugu\xEAs."
+  paintingTexture: {fileID: 0}
+  thumbnailSprite: {fileID: 0}
+  audioGuide: {fileID: 0}
+  audioDuration: 0
+  uniqueId: ronald_carvalho
+  suggestedViewOffset: {x: 0, y: 0, z: 2}

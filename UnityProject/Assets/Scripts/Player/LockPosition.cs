@@ -3,29 +3,20 @@ using UnityEngine;
 namespace MuseumModerna
 {
     /// <summary>
-    /// Mantém o objeto (Câmera) estritamente travado na sua posição inicial,
-    /// impedindo qualquer tipo de queda, gravidade ou física.
+    /// DEPRECATED — Este script foi desativado.
+    /// Ele destruía o CharacterController e travava a posição, impedindo gravidade e colisão.
+    /// Pode ser removido da hierarquia com segurança; o CharacterController em HeadGazeMovement
+    /// já mantém o player apoiado no chão.
     /// </summary>
     public class LockPosition : MonoBehaviour
     {
-        private Vector3 _startPosition;
-
-        private void Start()
+        private void Awake()
         {
-            _startPosition = transform.position;
-            
-            // Tenta destruir qualquer Rigidbody ou CharacterController que possa causar queda
-            var rb = GetComponent<Rigidbody>();
-            if (rb != null) Destroy(rb);
-            
-            var cc = GetComponent<CharacterController>();
-            if (cc != null) Destroy(cc);
-        }
-
-        private void LateUpdate()
-        {
-            // Garante que a posição nunca mude do ponto inicial (apenas a rotação muda)
-            transform.position = _startPosition;
+            Debug.LogWarning(
+                "[MuseumModerna] LockPosition está DESATIVADO. " +
+                "Remova este componente do GameObject — o CharacterController já cuida da física.",
+                this);
+            enabled = false;
         }
     }
 }

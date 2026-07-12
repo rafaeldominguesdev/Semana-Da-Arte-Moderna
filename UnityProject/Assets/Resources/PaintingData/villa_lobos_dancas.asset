@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
+  m_Name: villa_lobos_dancas
+  m_EditorClassIdentifier: 
+  title: "Dan\xE7as Africanas \u2014 Performance"
+  artist: Heitor Villa-Lobos
+  year: 1914
+  movement: Modernismo Musical
+  description: "Villa-Lobos apresentou na Semana suas composi\xE7\xF5es mais revolucion\xE1rias.
+    Entrando ao palco de sapatos diferentes nos dois p\xE9s, desafiou a etiqueta
+    do concerto cl\xE1ssico. As Dan\xE7as Africanas incorporam ritmos populares brasileiros
+    \xE0 linguagem da m\xFAsica erudita europeia."
+  funFact: "'N\xE3o aprendi, investiguei.' \u2014 Heitor Villa-Lobos."
+  paintingTexture: {fileID: 0}
+  thumbnailSprite: {fileID: 0}
+  audioGuide: {fileID: 0}
+  audioDuration: 0
+  uniqueId: villa_lobos_dancas
+  suggestedViewOffset: {x: 0, y: 0, z: 2}

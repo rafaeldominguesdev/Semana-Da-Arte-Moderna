@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
+  m_Name: lasar_segall
+  m_EditorClassIdentifier: 
+  title: Prisioneiro
+  artist: Lasar Segall
+  year: 1918
+  movement: Expressionismo
+  description: "Lasar Segall, artista lituano radicado no Brasil, trouxe para S\xE3o
+    Paulo as t\xE9cnicas expressionistas europeias. Prisioneiro retrata com ang\xFAstia
+    a condi\xE7\xE3o humana aprisionada \u2014 leitura poss\xEDvel como met\xE1fora
+    da imigra\xE7\xE3o e do ex\xEDlio que o pr\xF3prio artista vivenciou."
+  funFact: "Segall realizou a primeira exposi\xE7\xE3o de Arte Moderna no Brasil
+    em 1913 \u2014 antes da Semana de 22."
+  paintingTexture: {fileID: 0}
+  thumbnailSprite: {fileID: 0}
+  audioGuide: {fileID: 0}
+  audioDuration: 0
+  uniqueId: lasar_segall
+  suggestedViewOffset: {x: 0, y: 0, z: 2}

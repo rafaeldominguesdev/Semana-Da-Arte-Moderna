@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
+  m_Name: brecheret_cabeca_cristo
+  m_EditorClassIdentifier: 
+  title: "Cabe\xE7a de Cristo"
+  artist: Victor Brecheret
+  year: 1921
+  movement: "Modernismo / Art D\xE9co"
+  description: "Victor Brecheret foi o grande escultor da Semana de Arte Moderna.
+    Cabe\xE7a de Cristo exemplifica sua s\xEDntese entre o Art D\xE9co e a espiritualidade
+    brasileira. As linhas simplificadas e a expressividade monumental marcam uma
+    ruptura definitiva com o realismo acad\xEAmico da escultura oitocentista."
+  funFact: "Brecheret foi descoberto por M\xE1rio de Andrade em 1920, num ateli\xEA
+    improvisado numa garagem do Pal\xE1cio das Ind\xFAstrias."
+  paintingTexture: {fileID: 0}
+  thumbnailSprite: {fileID: 0}
+  audioGuide: {fileID: 0}
+  audioDuration: 0
+  uniqueId: brecheret_cabeca_cristo
+  suggestedViewOffset: {x: 0, y: 0, z: 2}

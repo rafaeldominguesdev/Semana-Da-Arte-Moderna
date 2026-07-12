@@ -30,6 +30,13 @@ namespace MuseumModerna
         [Tooltip("Força da gravidade aplicada ao CharacterController")]
         [SerializeField] private float gravity = -9.81f;
 
+        [Header("Trava Anti-Queda")]
+        [Tooltip("Trava o Y do player. Impede queda no vazio quando não há colisores no chão.")]
+        [SerializeField] private bool lockYPosition = true;
+
+        [Tooltip("Y fixo do player. 0 = usa automaticamente a posição inicial da cena.")]
+        [SerializeField] private float lockedY = 0f;
+
         [Header("Referências")]
         [Tooltip("Referência ao GyroscopeController da câmera do player")]
         [SerializeField] private GyroscopeController gyroController;
@@ -48,14 +55,40 @@ namespace MuseumModerna
         // Velocidade vertical para gravidade
         private float _verticalVelocity = 0f;
 
+        // Y travado (calculado no Start a partir da posição inicial)
+        private float _lockedYValue;
+
         // Flag para permitir/bloquear movimento (ex: durante cutscenes)
         private bool _movementEnabled = true;
 
         // ─── Ciclo de Vida Unity ──────────────────────────────────────────────
 
+        private void Start()
+        {
+            // Registra o Y inicial como referência — é a posição correta dentro da sala
+            _lockedYValue = (lockYPosition && lockedY == 0f)
+                ? transform.position.y
+                : lockedY;
+
+            if (lockYPosition)
+                Debug.Log($"[MuseumModerna] Y travado em {_lockedYValue:F2}. Player não pode cair.");
+        }
+
         private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
+
+            // Cria o CharacterController automaticamente se não existir na cena
+            if (_characterController == null)
+            {
+                _characterController = gameObject.AddComponent<CharacterController>();
+                _characterController.height = 1.8f;
+                _characterController.radius = 0.3f;
+                _characterController.center = new Vector3(0f, 0.9f, 0f);
+                _characterController.slopeLimit = 45f;
+                _characterController.stepOffset = 0.3f;
+                Debug.Log("[MuseumModerna] CharacterController adicionado automaticamente ao Player.");
+            }
 
             // Se a câmera não foi definida, tenta encontrar a câmera principal
             if (cameraTransform == null)
@@ -158,18 +191,32 @@ namespace MuseumModerna
         }
 
         /// <summary>
-        /// Aplica aceleração gravitacional para manter o player no chão.
+        /// Aplica gravidade OU trava Y dependendo da configuração.
+        /// Com lockYPosition ativo, o player NUNCA cai — independente de colisores.
         /// </summary>
         private void ApplyGravity()
         {
+            if (lockYPosition)
+            {
+                _verticalVelocity = 0f;
+
+                // Corrige Y se o player desviou por qualquer razão
+                float currentY = transform.position.y;
+                if (Mathf.Abs(currentY - _lockedYValue) > 0.02f)
+                {
+                    if (_characterController != null) _characterController.enabled = false;
+                    transform.position = new Vector3(transform.position.x, _lockedYValue, transform.position.z);
+                    if (_characterController != null) _characterController.enabled = true;
+                }
+                return;
+            }
+
             if (_characterController != null && _characterController.isGrounded)
             {
-                // Reseta velocidade vertical quando no chão (mantém leve valor negativo para detectar chão)
                 _verticalVelocity = -2f;
             }
             else
             {
-                // Acumula gravidade enquanto no ar
                 _verticalVelocity += gravity * Time.deltaTime;
             }
         }

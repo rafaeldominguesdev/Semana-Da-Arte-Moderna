@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
+  m_Name: john_graz
+  m_EditorClassIdentifier: 
+  title: "Composi\xE7\xE3o \u2014 Figura Feminina"
+  artist: John Graz
+  year: 1922
+  movement: Modernismo
+  description: "John Graz, su\xED\xE7o naturalizado brasileiro, participou da Semana
+    com obras que sintetizavam o cubismo franc\xEAs com uma paleta mediterr\xE2nea.
+    Sua produ\xE7\xE3o posterior influenciou profundamente o design de interiores
+    e a arte decorativa brasileira das d\xE9cadas de 1920 e 1930."
+  funFact: "John Graz era cunhado de Tarsila do Amaral, estreitando os la\xE7os entre
+    os grupos modernistas."
+  paintingTexture: {fileID: 0}
+  thumbnailSprite: {fileID: 0}
+  audioGuide: {fileID: 0}
+  audioDuration: 0
+  uniqueId: john_graz
+  suggestedViewOffset: {x: 0, y: 0, z: 2}

@@ -8,12 +8,20 @@ public class BuildScript
 {
     public static void BuildAndroid()
     {
-        string outputDir = "Builds/Android";
-        string apkPath   = outputDir + "/MuseudaSemanaArteModerna.apk";
+        string desktopPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
+        string outputDir   = Path.Combine(desktopPath, "MuseumVR_Build");
+        string apkPath     = Path.Combine(outputDir, "MuseudaSemanaArteModerna.apk");
 
         Directory.CreateDirectory(outputDir);
 
-        // Configurar Android
+        // ── Aponta SDK/NDK/JDK embutidos do Unity Hub ────────────────────────
+        const string unityAndroid =
+            "/Applications/Unity/Hub/Editor/2022.3.62f1/PlaybackEngines/AndroidPlayer";
+        EditorPrefs.SetString("AndroidSdkRoot",  Path.Combine(unityAndroid, "SDK"));
+        EditorPrefs.SetString("AndroidNdkRoot",  Path.Combine(unityAndroid, "NDK"));
+        EditorPrefs.SetString("JdkPath",         Path.Combine(unityAndroid, "OpenJDK"));
+
+        // ── Configurar Android ────────────────────────────────────────────────
         PlayerSettings.companyName = "SemanaArteModerna";
         PlayerSettings.productName = "Museu da Semana de Arte Moderna";
         PlayerSettings.applicationIdentifier = "com.SemanaArteModerna.MuseudaSemanaArteModerna";

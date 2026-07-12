@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
+  m_Name: organizadores
+  m_EditorClassIdentifier: 
+  title: Os Organizadores da Semana
+  artist: "Em\xEDlio di Cavalcanti \u2014 artista e idealizador"
+  year: 1922
+  movement: Modernismo
+  description: "Di Cavalcanti foi o principal articulador da Semana, convencendo
+    Gra\xE7a Aranha (escritor consagrado da ABL) a abrir o evento no Teatro Municipal.
+    M\xE1rio de Andrade trouxe a dimens\xE3o liter\xE1ria e musical. Paulo Prado
+    financiou o evento. Juntos, eles transformaram uma noite de gala burguesa num
+    manifesto revolucion\xE1rio."
+  funFact: "Di Cavalcanti criou a capa do programa da Semana \u2014 hoje um \xEDcone
+    do design gr\xE1fico brasileiro."
+  paintingTexture: {fileID: 0}
+  thumbnailSprite: {fileID: 0}
+  audioGuide: {fileID: 0}
+  audioDuration: 0
+  uniqueId: organizadores
+  suggestedViewOffset: {x: 0, y: 0, z: 2}

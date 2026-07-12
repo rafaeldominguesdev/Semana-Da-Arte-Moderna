@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
+  m_Name: graca_aranha_discurso
+  m_EditorClassIdentifier: 
+  title: "A Emo\xE7\xE3o Est\xE9tica na Arte Moderna"
+  artist: "Gra\xE7a Aranha"
+  year: 1922
+  movement: Modernismo
+  description: "Gra\xE7a Aranha abriu a Semana com um discurso propondo a ruptura
+    com a Academia Brasileira de Letras e a cria\xE7\xE3o de uma arte brasileira
+    cosmopolita e livre. Sua autoridade liter\xE1ria \u2014 era membro fundador da
+    ABL \u2014 legitimou o evento junto \xE0 elite cultural de S\xE3o Paulo."
+  funFact: "Gra\xE7a Aranha tinha 56 anos em 1922 \u2014 o mais velho do grupo. Seu
+    prest\xEDgio viabilizou o Teatro Municipal."
+  paintingTexture: {fileID: 0}
+  thumbnailSprite: {fileID: 0}
+  audioGuide: {fileID: 0}
+  audioDuration: 0
+  uniqueId: graca_aranha_discurso
+  suggestedViewOffset: {x: 0, y: 0, z: 2}

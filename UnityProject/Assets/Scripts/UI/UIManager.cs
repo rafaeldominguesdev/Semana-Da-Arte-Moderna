@@ -44,6 +44,18 @@ namespace MuseumModerna
         [Tooltip("Imagem de miniatura da obra (opcional)")]
         [SerializeField] private Image thumbnailImage;
 
+        // ─── Gaze Dwell Ring ──────────────────────────────────────────────────
+
+        [Header("Gaze Dwell Ring")]
+        [Tooltip("Image com Fill Method = Radial 360 ao redor do crosshair. Mostra progresso do olhar.")]
+        [SerializeField] private Image gazeDwellRing;
+
+        [Tooltip("Cor inicial do anel (0% progresso)")]
+        [SerializeField] private Color gazeRingStartColor = new Color(1f, 1f, 1f, 0.3f);
+
+        [Tooltip("Cor final do anel (100% progresso)")]
+        [SerializeField] private Color gazeRingEndColor = new Color(1f, 0.88f, 0.2f, 0.95f);
+
         // ─── Crosshair ────────────────────────────────────────────────────────
 
         [Header("Crosshair / Reticle")]
@@ -195,17 +207,33 @@ namespace MuseumModerna
             _panelVisible = false;
         }
 
-        // ─── Crosshair ────────────────────────────────────────────────────────
+        // ─── Gaze Dwell Ring ──────────────────────────────────────────────────
 
         /// <summary>
-        /// Atualiza a cor do crosshair baseado no estado de interação.
+        /// Atualiza o anel de progresso do olhar (0 = vazio, 1 = cheio/ativado).
+        /// Chamado pelo GazeDwellInteraction a cada frame.
         /// </summary>
+        public void SetGazeProgress(float progress)
+        {
+            if (gazeDwellRing == null) return;
+
+            bool visible = progress > 0.01f;
+            if (gazeDwellRing.gameObject.activeSelf != visible)
+                gazeDwellRing.gameObject.SetActive(visible);
+
+            if (visible)
+            {
+                gazeDwellRing.fillAmount = progress;
+                gazeDwellRing.color = Color.Lerp(gazeRingStartColor, gazeRingEndColor, progress);
+            }
+        }
+
+        // ─── Crosshair ────────────────────────────────────────────────────────
+
         public void SetCrosshairActive(bool active)
         {
             if (crosshairImage != null)
-            {
                 crosshairImage.color = active ? crosshairActiveColor : crosshairNormalColor;
-            }
         }
 
         // ─── Fade In/Out ──────────────────────────────────────────────────────

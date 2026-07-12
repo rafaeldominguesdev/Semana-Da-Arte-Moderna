@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
+  m_Name: brecheret_eva
+  m_EditorClassIdentifier: 
+  title: Eva
+  artist: Victor Brecheret
+  year: 1922
+  movement: Modernismo
+  description: "Na escultura Eva, Brecheret explora o corpo feminino com uma estiliza\xE7\xE3o
+    que recusa o naturalismo acad\xEAmico. A figura sinuosa e geometrizada dialoga
+    com a escultura africana e a arte pr\xE9-colombiana \u2014 fontes que os modernistas
+    brasileiros reivindicavam como parte de uma identidade est\xE9tica pr\xF3pria."
+  funFact: "As esculturas de Brecheret foram transportadas \xE0s pressas para o Teatro
+    Municipal nas v\xE9speras da Semana."
+  paintingTexture: {fileID: 0}
+  thumbnailSprite: {fileID: 0}
+  audioGuide: {fileID: 0}
+  audioDuration: 0
+  uniqueId: brecheret_eva
+  suggestedViewOffset: {x: 0, y: 0, z: 2}

@@ -21,6 +21,7 @@ namespace MuseumModerna
         [SerializeField] private PlayerController playerController;
         [SerializeField] private ExhibitManager exhibitManager;
         [SerializeField] private UIManager uiManager;
+        [SerializeField] private SaveSystem saveSystem;
 
         [Header("Configurações")]
         [Tooltip("Manter tela ligada durante a experiência VR")]
@@ -68,6 +69,9 @@ namespace MuseumModerna
             if (uiManager == null)
                 uiManager = FindAnyObjectByType<UIManager>();
 
+            if (saveSystem == null)
+                saveSystem = FindAnyObjectByType<SaveSystem>();
+
             if (playerController == null)
                 Debug.LogError("[MuseumModerna] GameManager: PlayerController não encontrado na cena!", this);
 
@@ -105,6 +109,16 @@ namespace MuseumModerna
         public float GetVisitProgress()
         {
             return exhibitManager != null ? exhibitManager.VisitProgress : 0f;
+        }
+
+        /// <summary>Força um salvamento imediato.</summary>
+        public void SaveNow() => saveSystem?.SaveGame();
+
+        /// <summary>Deleta o save e reinicia a posição do player.</summary>
+        public void DeleteSaveAndRestart()
+        {
+            saveSystem?.DeleteSave();
+            RestartScene();
         }
     }
 }
