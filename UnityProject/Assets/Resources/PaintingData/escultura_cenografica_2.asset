@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
+  m_Name: escultura_cenografica_2
+  m_EditorClassIdentifier:
+  title: Estudo de volumes 2
+  artist: "Cria\xE7\xE3o cenogr\xE1fica do projeto"
+  year: 2026
+  movement: Modernismo brasileiro
+  periodo: "Contempor\xE2nea \u2014 criada para o museu virtual"
+  tecnica: Modelagem 3D; material digital de bronze
+  categoria: "Escultura cenogr\xE1fica"
+  relacao_com_a_semana_de_1922: "Media\xE7\xE3o inspirada nos debates sobre escultura
+    e no contexto de Victor Brecheret, expositor em 1922. N\xE3o \xE9 obra do artista."
+  obra_historica_ou_reinterpretacao: "Reinterpreta\xE7\xE3o cenogr\xE1fica inspirada
+    no modernismo brasileiro. N\xE3o \xE9 uma reprodu\xE7\xE3o de uma obra original
+    e n\xE3o \xE9 uma obra de Victor Brecheret."
+  resumo: "Planos e volumes geom\xE9tricos variam conforme o visitante circula ao
+    redor da pe\xE7a."
+  fontes: https://anitamalfatti.ieb.usp.br/1921-1922/
+  description: "Planos e volumes geom\xE9tricos variam conforme o visitante circula
+    ao redor da pe\xE7a. A composi\xE7\xE3o prop\xF5e um exerc\xEDcio de observa\xE7\xE3o
+    de equil\xEDbrio, luz e espa\xE7o."
+  funFact:
+  paintingTexture: {fileID: 0}
+  thumbnailSprite: {fileID: 0}
+  audioGuide: {fileID: 0}
+  audioDuration: 0
+  uniqueId: escultura_cenografica_2
+  suggestedViewOffset: {x: 0, y: 0, z: 2}

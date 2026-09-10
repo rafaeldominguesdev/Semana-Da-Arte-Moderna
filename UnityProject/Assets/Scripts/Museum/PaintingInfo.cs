@@ -30,6 +30,16 @@ namespace MuseumModerna
         [Tooltip("Movimento artístico ou estilo (ex: Modernismo, Expressionismo)")]
         public string movement;
 
+        [Header("Ficha curatorial")]
+        public string periodo;
+        public string tecnica;
+        public string categoria;
+        [TextArea(2, 5)] public string relacao_com_a_semana_de_1922;
+        [TextArea(2, 4)] public string obra_historica_ou_reinterpretacao;
+        [TextArea(2, 4)] public string resumo;
+        [TextArea(2, 6)] public string fontes;
+        public string Periodo => string.IsNullOrWhiteSpace(periodo) ? year.ToString() : periodo;
+
         // ─── Conteúdo ─────────────────────────────────────────────────────────
 
         [Header("Conteúdo")]
@@ -92,7 +102,7 @@ namespace MuseumModerna
         /// </summary>
         public string GetDisplayHeader()
         {
-            return $"{title} ({year}) — {artist}";
+            return $"{title} ({Periodo}) — {artist}";
         }
 
         /// <summary>

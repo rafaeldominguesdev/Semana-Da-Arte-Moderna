@@ -171,9 +171,22 @@ namespace MuseumModerna
         /// Define o renderer que receberá o highlight.
         /// Usa MaterialPropertyBlock para não criar instâncias do material.
         /// </summary>
+        private static Color BaseEmission(Renderer renderer)
+        {
+            var material = renderer != null ? renderer.sharedMaterial : null;
+            return material != null && material.HasProperty("_EmissionColor") ? material.GetColor("_EmissionColor") : Color.black;
+        }
+
         private void ApplyHighlight(Renderer targetRenderer)
         {
             if (targetRenderer == null) return;
+            if (_highlightedRenderer != null && _highlightedRenderer != targetRenderer)
+            {
+                _highlightedRenderer.GetPropertyBlock(_propBlock);
+                _propBlock.SetColor("_EmissionColor", BaseEmission(_highlightedRenderer));
+                _highlightedRenderer.SetPropertyBlock(_propBlock);
+                _currentHighlight = 0;
+            }
             _highlightedRenderer = targetRenderer;
             _targetHighlight = highlightIntensity;
         }
@@ -196,14 +209,14 @@ namespace MuseumModerna
             if (_highlightedRenderer != null)
             {
                 _highlightedRenderer.GetPropertyBlock(_propBlock);
-                _propBlock.SetColor("_EmissionColor", highlightColor * _currentHighlight);
+                _propBlock.SetColor("_EmissionColor", BaseEmission(_highlightedRenderer) + highlightColor * _currentHighlight);
                 _highlightedRenderer.SetPropertyBlock(_propBlock);
 
                 // Quando o fade out terminar, limpa a referência
                 if (_currentHighlight < 0.001f && _targetHighlight <= 0f)
                 {
                     // Garante que emission vai a zero absoluto
-                    _propBlock.SetColor("_EmissionColor", Color.black);
+                    _propBlock.SetColor("_EmissionColor", BaseEmission(_highlightedRenderer));
                     _highlightedRenderer.SetPropertyBlock(_propBlock);
                     _highlightedRenderer = null;
                 }

@@ -21,9 +21,10 @@ namespace MuseumModerna
         private static void Initialize()
         {
             Debug.Log("[MuseumModerna] AutoBootstrap: corrigindo cena...");
-            FixLighting();
+            bool curated = GameObject.Find("Museum_GuidedExhibition") != null;
+            if (!curated) FixLighting();
             FixCamera();
-            FixAllMaterials();
+            if (!curated) FixAllMaterials();
             AddMissingComponents();
             Debug.Log("[MuseumModerna] AutoBootstrap: pronto.");
         }
@@ -155,7 +156,7 @@ namespace MuseumModerna
         private static void AddMissingComponents()
         {
             // Teto de museu
-            if (Object.FindAnyObjectByType<MuseumCeilingBuilder>() == null)
+            if (GameObject.Find("Museum_LouvreStyle") == null && Object.FindAnyObjectByType<MuseumCeilingBuilder>() == null)
             {
                 new GameObject("MuseumCeilingBuilder_Auto")
                     .AddComponent<MuseumCeilingBuilder>();

@@ -12,16 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
   m_Name: brecheret_cabeca_cristo
   m_EditorClassIdentifier: 
-  title: "Cabe\xE7a de Cristo"
-  artist: Victor Brecheret
-  year: 1921
-  movement: "Modernismo / Art D\xE9co"
-  description: "Victor Brecheret foi o grande escultor da Semana de Arte Moderna.
-    Cabe\xE7a de Cristo exemplifica sua s\xEDntese entre o Art D\xE9co e a espiritualidade
-    brasileira. As linhas simplificadas e a expressividade monumental marcam uma
-    ruptura definitiva com o realismo acad\xEAmico da escultura oitocentista."
-  funFact: "Brecheret foi descoberto por M\xE1rio de Andrade em 1920, num ateli\xEA
-    improvisado numa garagem do Pal\xE1cio das Ind\xFAstrias."
+  title: 'Victor Brecheret: forma e volume'
+  artist: "Victor Brecheret (contexto hist\xF3rico)"
+  year: 1922
+  movement: Modernismo brasileiro
+  periodo: "D\xE9cada de 1920 (contexto)"
+  tecnica: Painel digital sobre escultura
+  categoria: Escultura
+  relacao_com_a_semana_de_1922: "Brecheret teve esculturas na exposi\xE7\xE3o de
+    1922. As formas geom\xE9tricas desta cena s\xE3o cria\xE7\xF5es do projeto."
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: "Brecheret participou da renova\xE7\xE3o da escultura brasileira."
+  fontes: https://anitamalfatti.ieb.usp.br/1921-1922/
+  description: "Brecheret participou da renova\xE7\xE3o da escultura brasileira.
+    O painel convida a observar rela\xE7\xF5es entre massa, vazio e silhueta, sem
+    identificar o objeto cenogr\xE1fico como uma escultura hist\xF3rica."
+  funFact:
   paintingTexture: {fileID: 0}
   thumbnailSprite: {fileID: 0}
   audioGuide: {fileID: 0}

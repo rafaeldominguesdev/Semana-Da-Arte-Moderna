@@ -1,175 +1,112 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace MuseumModerna
 {
-    /// <summary>
-    /// Interação por olhar: o jogador olha para um quadro por dwellTime segundos
-    /// para ativar o painel de informações e o guia de áudio.
-    /// Funciona com o giroscópio — não precisa de botão ou toque.
-    ///
-    /// Como usar:
-    ///   1. Adicione ao mesmo GameObject que tem a Camera (Player/Camera).
-    ///   2. Configure paintingLayer para a layer "Painting".
-    ///   3. Arraste o GazeDwellRing (Image radial) no UIManager.
-    ///   4. Ative "Use Gaze Dwell" no PlayerController Inspector.
-    /// </summary>
+    /// <summary>Raycast central com oclusão real, ficha automática e fixação opcional.</summary>
+    [DefaultExecutionOrder(100)]
     public class GazeDwellInteraction : MonoBehaviour
     {
-        [Header("Configuração")]
-        [Tooltip("Segundos olhando para um quadro para ativá-lo")]
-        [SerializeField] private float dwellTime = 2f;
-
-        [Tooltip("Distância máxima do raycast em metros")]
-        [SerializeField] private float maxRayDistance = 8f;
-
-        [Tooltip("Segundos sem ver o quadro antes de fechar o painel automaticamente")]
-        [SerializeField] private float autoCloseTimeout = 6f;
-
-        [Tooltip("Layer dos quadros — deve ser a mesma do PlayerController")]
-        [SerializeField] private LayerMask paintingLayer;
-
-        [Header("Referências (auto-encontradas se vazias)")]
+        [SerializeField, Min(0)] private float dwellTime = 0.12f;
+        [SerializeField, Min(0.1f)] private float maxRayDistance = 8f;
+        [SerializeField, Min(0)] private float autoCloseTimeout = 0.15f;
+        [SerializeField] private LayerMask paintingLayer; // compatibilidade das cenas existentes
         [SerializeField] private PlayerController playerController;
         [SerializeField] private UIManager uiManager;
         [SerializeField] private Camera vrCamera;
-
-        // ─── Estado Interno ────────────────────────────────────────────────────
-
-        private PaintingExhibit _currentTarget;
-        private float _gazeTimer;
-        private float _closeTimer;
-        private bool _activated;
-
-        // ─── Ciclo de Vida ────────────────────────────────────────────────────
+        public GuideFocusState Focus { get; } = new GuideFocusState();
+        public bool LongerReading { get; set; }
+        public bool IsPaused => playerController != null && playerController.State == PlayerState.Paused;
+        private PaintingInfo candidate;
+        private PaintingInfo published;
+        private float candidateTime;
+        private Vector2 touchStart;
+        private float touchTime;
+        private bool touchOnUI;
+        private int rayMask;
 
         private void Awake()
         {
-            if (vrCamera == null)
-                vrCamera = GetComponent<Camera>() ?? Camera.main;
+            vrCamera = vrCamera != null ? vrCamera : GetComponent<Camera>() ?? Camera.main;
+            playerController = playerController != null ? playerController : FindAnyObjectByType<PlayerController>();
+            uiManager = uiManager != null ? uiManager : FindAnyObjectByType<UIManager>();
+            rayMask = Physics.DefaultRaycastLayers;
+            int playerLayer = LayerMask.NameToLayer("Player");
+            if (playerLayer >= 0) rayMask &= ~(1 << playerLayer);
+        }
 
-            if (playerController == null)
-                playerController = FindAnyObjectByType<PlayerController>();
-
-            if (uiManager == null)
-                uiManager = FindAnyObjectByType<UIManager>();
-
-            // Herda a layer do PlayerController se não configurada
-            if (paintingLayer.value == 0 && playerController != null)
-                paintingLayer = playerController.PaintingLayer;
-
-            if (vrCamera == null)
-                Debug.LogError("[MuseumModerna] GazeDwellInteraction: Camera não encontrada!", this);
+        public PaintingExhibit RaycastExhibit(Ray ray)
+        {
+            // Primeiro sólido atingido: paredes, vitrines e pedestais também bloqueiam o olhar.
+            if (Physics.Raycast(ray, out var hit, maxRayDistance, rayMask, QueryTriggerInteraction.Ignore))
+                return hit.collider.GetComponentInParent<PaintingExhibit>();
+            return null;
         }
 
         private void Update()
         {
             if (vrCamera == null || playerController == null) return;
             if (playerController.State == PlayerState.Paused) return;
-
-            Ray ray = new Ray(vrCamera.transform.position, vrCamera.transform.forward);
-
-            if (Physics.Raycast(ray, out RaycastHit hit, maxRayDistance, paintingLayer))
+            var vrMode = MobileVrMode.Instance;
+            bool inVr = vrMode != null && vrMode.IsActive;
+            if (inVr && (vrMode.WorldGuide.ConsumesGaze || vrMode.WorldGuide.MenuOpen))
             {
-                PaintingExhibit exhibit = hit.collider.GetComponent<PaintingExhibit>()
-                                       ?? hit.collider.GetComponentInParent<PaintingExhibit>();
+                Publish();
+                return; // Ler e acionar a ficha não deve encerrá-la ou selecionar a parede ao fundo.
+            }
+            var target = RaycastExhibit(new Ray(vrCamera.transform.position, vrCamera.transform.forward));
+            var data = target != null ? target.PaintingData : null;
+            if (candidate != data) { candidate = data; candidateTime = 0; }
+            candidateTime += Time.unscaledDeltaTime;
+            Focus.Observe(candidateTime >= dwellTime ? data : null, Time.unscaledDeltaTime,
+                LongerReading ? 5f : inVr ? 1.2f : autoCloseTimeout);
 
-                if (exhibit != null && exhibit.PaintingData != null)
+            if (Input.GetKeyDown(KeyCode.Escape)) Close();
+            if (Input.GetKeyDown(KeyCode.F)) TogglePin();
+            if (!inVr && Input.touchCount > 0)
+            {
+                var touch = Input.GetTouch(0);
+                if (touch.phase == TouchPhase.Began)
                 {
-                    HandleGazeOnPainting(exhibit);
-                    return;
+                    touchStart = touch.position;
+                    touchTime = Time.unscaledTime;
+                    touchOnUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(touch.fingerId);
                 }
+                if (touch.phase == TouchPhase.Ended && !touchOnUI &&
+                    Vector2.Distance(touchStart, touch.position) < 18 && Time.unscaledTime - touchTime < .35f)
+                    PinAt(touch.position);
             }
+            else if (!inVr && Input.GetMouseButtonDown(0) &&
+                (EventSystem.current == null || !EventSystem.current.IsPointerOverGameObject()))
+                PinAt(Input.mousePosition);
 
-            HandleGazeOff();
+            Publish();
+            uiManager?.SetCrosshairActive(data != null && Focus.Enabled);
         }
 
-        // ─── Lógica de Gaze ───────────────────────────────────────────────────
-
-        private void HandleGazeOnPainting(PaintingExhibit exhibit)
+        private void PinAt(Vector2 position)
         {
-            _closeTimer = 0f;
-
-            if (exhibit != _currentTarget)
-            {
-                // Mudou de quadro: fecha o anterior
-                if (_activated)
-                    playerController.TriggerLeavePainting();
-
-                _currentTarget = exhibit;
-                _gazeTimer = 0f;
-                _activated = false;
-            }
-
-            if (_activated) return;
-
-            _gazeTimer += Time.deltaTime;
-            float progress = Mathf.Clamp01(_gazeTimer / dwellTime);
-            uiManager?.SetGazeProgress(progress);
-
-            if (_gazeTimer >= dwellTime)
-            {
-                _activated = true;
-                uiManager?.SetGazeProgress(0f);
-                playerController.TriggerNearPainting(exhibit.PaintingData);
-            }
+            var exhibit = RaycastExhibit(vrCamera.ScreenPointToRay(position));
+            if (exhibit != null) Focus.Pin(exhibit.PaintingData);
         }
-
-        private void HandleGazeOff()
+        public void TogglePin() { Focus.TogglePin(); Publish(); }
+        public void Close() { Focus.Dismiss(candidate); Publish(); }
+        public void SetPanelsEnabled(bool value) { Focus.SetEnabled(value); Publish(); }
+        public void CancelInteraction() => Close();
+        private void Publish()
         {
-            if (_currentTarget == null)
+            if (published != Focus.Current)
             {
-                // Ainda pode estar reduzindo o anel suavemente
-                if (_gazeTimer > 0f)
-                {
-                    _gazeTimer = Mathf.Max(0f, _gazeTimer - Time.deltaTime * 2f);
-                    uiManager?.SetGazeProgress(Mathf.Clamp01(_gazeTimer / dwellTime));
-                }
-                return;
+                if (published != null) playerController?.TriggerLeavePainting();
+                published = Focus.Current;
+                if (published != null) playerController?.TriggerNearPainting(published);
             }
-
-            // Estava olhando, agora desviou
-            if (!_activated)
-            {
-                // Não ativou ainda: decai o timer
-                _gazeTimer = Mathf.Max(0f, _gazeTimer - Time.deltaTime * 2f);
-                uiManager?.SetGazeProgress(Mathf.Clamp01(_gazeTimer / dwellTime));
-
-                if (_gazeTimer <= 0f)
-                    _currentTarget = null;
-            }
-            else
-            {
-                // Já ativou: conta timeout antes de fechar
-                _closeTimer += Time.deltaTime;
-                if (_closeTimer >= autoCloseTimeout)
-                {
-                    _closeTimer = 0f;
-                    _activated = false;
-                    _currentTarget = null;
-                    playerController.TriggerLeavePainting();
-                }
-            }
+            uiManager?.SetGuidePinned(Focus.Pinned);
         }
-
-        // ─── API Pública ──────────────────────────────────────────────────────
-
-        /// <summary>Cancela a interação atual (use ao pressionar botão Fechar no painel).</summary>
-        public void CancelInteraction()
+        private void OnDisable()
         {
-            _currentTarget = null;
-            _gazeTimer = 0f;
-            _closeTimer = 0f;
-            _activated = false;
-            uiManager?.SetGazeProgress(0f);
+            Focus.Dismiss(null);
+            Publish();
         }
-
-#if UNITY_EDITOR
-        private void OnDrawGizmosSelected()
-        {
-            if (vrCamera == null) return;
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawRay(vrCamera.transform.position, vrCamera.transform.forward * maxRayDistance);
-        }
-#endif
     }
 }

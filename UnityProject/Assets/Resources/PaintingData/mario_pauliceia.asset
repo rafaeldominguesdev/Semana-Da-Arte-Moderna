@@ -12,17 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
   m_Name: mario_pauliceia
   m_EditorClassIdentifier: 
-  title: "Pref\xE1cio Interessant\xEDssimo \u2014 Paulic\xE9ia Desvairada"
+  title: Pauliceia desvairada
   artist: "M\xE1rio de Andrade"
   year: 1922
-  movement: Modernismo
-  description: "No Pref\xE1cio Interessant\xEDssimo, M\xE1rio define sua po\xE9tica
-    da harmonia polif\xF4nica e do verso livre: 'Quando sinto a impuls\xE3o l\xEDrica,
-    escrevo sem pensar tudo o que meu inconsciente grita. Penso depois.' A obra inaugura
-    o verso livre, o ritmo emocional e a pluralidade de vozes como recursos da poesia
-    brasileira."
-  funFact: "M\xE1rio come\xE7ou a escrever Paulic\xE9ia Desvairada numa \xFAnica
-    noite de dezembro de 1920, em estado de inspira\xE7\xE3o febril."
+  movement: Modernismo brasileiro
+  periodo: "1922 \u2014 ano de publica\xE7\xE3o"
+  tecnica: Livro de poesia; painel digital
+  categoria: Literatura
+  relacao_com_a_semana_de_1922: "M\xE1rio foi participante da Semana. O livro pertence
+    ao mesmo ano, sem que isso transforme seu conte\xFAdo integral no programa do
+    evento."
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: "A cidade aparece como mat\xE9ria po\xE9tica, com vozes e ritmos contrastantes."
+  fontes: 'https://www.brasiliana.usp.br/handle/bbm/9055
+
+    https://anitamalfatti.ieb.usp.br/1921-1922/'
+  description: "A cidade aparece como mat\xE9ria po\xE9tica, com vozes e ritmos contrastantes.
+    O livro permite discutir a experi\xEAncia urbana e a liberdade de composi\xE7\xE3o."
+  funFact:
   paintingTexture: {fileID: 0}
   thumbnailSprite: {fileID: 0}
   audioGuide: {fileID: 0}

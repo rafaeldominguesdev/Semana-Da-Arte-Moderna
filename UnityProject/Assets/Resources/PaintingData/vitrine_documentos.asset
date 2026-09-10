@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
+  m_Name: vitrine_documentos
+  m_EditorClassIdentifier:
+  title: Documentos de uma semana
+  artist: "Cria\xE7\xE3o educativa do projeto"
+  year: 2026
+  movement: Modernismo brasileiro
+  periodo: "Contempor\xE2nea; refer\xEAncia hist\xF3rica: 1922"
+  tecnica: "Impressos cenogr\xE1ficos em vitrine digital"
+  categoria: Vitrine documental
+  relacao_com_a_semana_de_1922: "A vitrine evoca os impressos ligados \xE0 Semana,
+    sem afirmar que estes objetos estiveram no teatro."
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: "Programas, cat\xE1logos e livros permitem estudar a circula\xE7\xE3o das
+    ideias."
+  fontes: https://acervo.museudalinguaportuguesa.org.br/acervos/museologico/8275/semana-de-arte-moderna-de-1922
+  description: "Programas, cat\xE1logos e livros permitem estudar a circula\xE7\xE3o
+    das ideias. Os volumes nesta vitrine s\xE3o objetos did\xE1ticos, sem reproduzir
+    documentos de arquivo."
+  funFact:
+  paintingTexture: {fileID: 0}
+  thumbnailSprite: {fileID: 0}
+  audioGuide: {fileID: 0}
+  audioDuration: 0
+  uniqueId: vitrine_documentos
+  suggestedViewOffset: {x: 0, y: 0, z: 2}

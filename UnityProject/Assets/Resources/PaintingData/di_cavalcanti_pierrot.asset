@@ -12,16 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
   m_Name: di_cavalcanti_pierrot
   m_EditorClassIdentifier: 
-  title: Pierrot
-  artist: "Em\xEDlio di Cavalcanti"
+  title: 'Di Cavalcanti: desenho e vida urbana'
+  artist: Di Cavalcanti
   year: 1922
-  movement: Modernismo
-  description: "Di Cavalcanti usa a figura do Pierrot \u2014 o palha\xE7o melanc\xF3lico
-    da Commedia dell'Arte \u2014 como met\xE1fora do artista incompreendido pela
-    sociedade. A obra mescla influ\xEAncias do cubismo parisiense com uma sensibilidade
-    tropical e carioca inconfund\xEDvel."
-  funFact: Di Cavalcanti era carioca e trouxe para a Semana a perspectiva do Rio,
-    equilibrando o paulicentrismo do grupo.
+  movement: Modernismo brasileiro
+  periodo: "D\xE9cada de 1920"
+  tecnica: "Painel gr\xE1fico digital; refer\xEAncia a desenho e ilustra\xE7\xE3o"
+  categoria: Painel de artista
+  relacao_com_a_semana_de_1922: "Participou da organiza\xE7\xE3o da Semana e criou
+    a capa de seu cat\xE1logo."
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: "Di Cavalcanti atuou entre o desenho, a ilustra\xE7\xE3o e a pintura."
+  fontes: https://masp.org.br/en/collections/works/1920s-women
+  description: "Di Cavalcanti atuou entre o desenho, a ilustra\xE7\xE3o e a pintura.
+    Este painel destaca o papel das artes gr\xE1ficas na circula\xE7\xE3o de ideias
+    modernas."
+  funFact:
   paintingTexture: {fileID: 0}
   thumbnailSprite: {fileID: 0}
   audioGuide: {fileID: 0}

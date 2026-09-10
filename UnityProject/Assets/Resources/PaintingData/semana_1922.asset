@@ -12,18 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
   m_Name: semana_1922
   m_EditorClassIdentifier: 
-  title: Semana de Arte Moderna de 1922
-  artist: "Organiza\xE7\xE3o: Di Cavalcanti \xB7 M\xE1rio de Andrade \xB7 Gra\xE7a
-    Aranha"
+  title: "Semana de Arte Moderna: o cat\xE1logo"
+  artist: Di Cavalcanti
   year: 1922
-  movement: Modernismo Brasileiro
-  description: "Realizada entre 13 e 17 de fevereiro de 1922 no Teatro Municipal
-    de S\xE3o Paulo, a Semana de Arte Moderna marcou a ruptura com o conservadorismo
-    art\xEDstico e o in\xEDcio do Modernismo no Brasil. O evento reuniu pintores,
-    escultores, poetas e m\xFAsicos que buscavam uma arte genuinamente brasileira,
-    livre das c\xF3pias do s\xE9culo XIX."
-  funFact: "'As vaias foram o maior elogio que poder\xEDamos receber.' \u2014 Em\xEDlio
-    di Cavalcanti"
+  movement: Modernismo brasileiro
+  periodo: 1922
+  tecnica: "Composi\xE7\xE3o tipogr\xE1fica digital; refer\xEAncia a impresso"
+  categoria: Cartaz
+  relacao_com_a_semana_de_1922: "Di Cavalcanti criou a capa do cat\xE1logo do evento
+    realizado no Theatro Municipal de S\xE3o Paulo."
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: "Cat\xE1logos e programas d\xE3o forma p\xFAblica a uma exposi\xE7\xE3o."
+  fontes: https://masp.org.br/en/collections/works/1920s-women
+  description: "Cat\xE1logos e programas d\xE3o forma p\xFAblica a uma exposi\xE7\xE3o.
+    A composi\xE7\xE3o deste painel foi criada para a visita digital e n\xE3o \xE9
+    um fac-s\xEDmile do impresso hist\xF3rico."
+  funFact:
   paintingTexture: {fileID: 0}
   thumbnailSprite: {fileID: 0}
   audioGuide: {fileID: 0}

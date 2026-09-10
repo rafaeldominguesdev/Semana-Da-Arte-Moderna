@@ -12,16 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
   m_Name: brecheret_bandeiras
   m_EditorClassIdentifier: 
-  title: "Monumento \xE0s Bandeiras \u2014 Estudo Preliminar"
+  title: "Monumento \xE0s Bandeiras"
   artist: Victor Brecheret
-  year: 1920
-  movement: Modernismo Monumental
-  description: "O estudo para o Monumento \xE0s Bandeiras \xE9 uma das obras mais
-    ambiciosas da arte brasileira. Brecheret prop\xF5e um grupo escult\xF3rico monumental
-    retratando os bandeirantes com uma for\xE7a \xE9pica e uma estiliza\xE7\xE3o
-    modernista que rompe com os monumentos historicistas do s\xE9culo XIX."
-  funFact: "O Monumento s\xF3 foi inaugurado no Parque do Ibirapuera em 1953 \u2014
-    mais de 30 anos ap\xF3s o primeiro estudo."
+  year: 1953
+  movement: Modernismo brasileiro
+  periodo: "1953 \u2014 inaugura\xE7\xE3o; projeto iniciado em 1920"
+  tecnica: Granito (monumento); painel digital de contexto
+  categoria: "Escultura / per\xEDodo posterior"
+  relacao_com_a_semana_de_1922: "Brecheret exp\xF4s em 1922, mas o monumento inaugurado
+    em 1953 pertence a outro momento."
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: O monumento trabalha a ideia de deslocamento coletivo em escala urbana.
+  fontes: https://prefeitura.sp.gov.br/web/cultura/w/patrimonio_historico/adote_obra/4526
+  description: "O monumento trabalha a ideia de deslocamento coletivo em escala urbana.
+    Sua leitura atual tamb\xE9m exige refletir sobre as viol\xEAncias da coloniza\xE7\xE3o
+    e a constru\xE7\xE3o da mem\xF3ria p\xFAblica."
+  funFact:
   paintingTexture: {fileID: 0}
   thumbnailSprite: {fileID: 0}
   audioGuide: {fileID: 0}

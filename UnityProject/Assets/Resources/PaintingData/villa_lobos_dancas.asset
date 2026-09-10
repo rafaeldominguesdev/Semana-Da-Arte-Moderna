@@ -12,15 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
   m_Name: villa_lobos_dancas
   m_EditorClassIdentifier: 
-  title: "Dan\xE7as Africanas \u2014 Performance"
+  title: "Dan\xE7as caracter\xEDsticas africanas"
   artist: Heitor Villa-Lobos
-  year: 1914
-  movement: Modernismo Musical
-  description: "Villa-Lobos apresentou na Semana suas composi\xE7\xF5es mais revolucion\xE1rias.
-    Entrando ao palco de sapatos diferentes nos dois p\xE9s, desafiou a etiqueta
-    do concerto cl\xE1ssico. As Dan\xE7as Africanas incorporam ritmos populares brasileiros
-    \xE0 linguagem da m\xFAsica erudita europeia."
-  funFact: "'N\xE3o aprendi, investiguei.' \u2014 Heitor Villa-Lobos."
+  year: 1915
+  movement: Modernismo brasileiro
+  periodo: "1914/1915; vers\xE3o para octeto anterior a 1922"
+  tecnica: "Composi\xE7\xE3o musical; painel digital de media\xE7\xE3o"
+  categoria: "M\xFAsica"
+  relacao_com_a_semana_de_1922: "A vers\xE3o para octeto foi apresentada na Semana
+    de Arte Moderna."
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: "A obra re\xFAne pe\xE7as originalmente escritas para piano e posteriormente
+    transcritas para octeto."
+  fontes: https://www.gov.br/funarte/pt-br/assuntos/noticias/todas-noticias/funarte-celebra-os-100-anos-da-semana-de-arte-moderna-e-realiza-eventos-ao-longo-de-2022
+  description: "A obra re\xFAne pe\xE7as originalmente escritas para piano e posteriormente
+    transcritas para octeto. A mudan\xE7a de forma\xE7\xE3o permite pensar como timbre
+    e ritmo alteram a escuta."
+  funFact:
   paintingTexture: {fileID: 0}
   thumbnailSprite: {fileID: 0}
   audioGuide: {fileID: 0}

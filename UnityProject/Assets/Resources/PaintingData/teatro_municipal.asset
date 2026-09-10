@@ -12,16 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
   m_Name: teatro_municipal
   m_EditorClassIdentifier: 
-  title: "Teatro Municipal de S\xE3o Paulo"
-  artist: "Arquitetura: Domiziano Rossi e Cl\xE1udio Rossi (1911)"
+  title: O Theatro Municipal e a Semana
+  artist: Participantes da Semana de Arte Moderna
   year: 1922
-  movement: "Contexto Hist\xF3rico"
-  description: "O maior teatro da cidade e s\xEDmbolo da elite paulistana foi deliberadamente
-    escolhido pelos modernistas para provocar o establishment cultural. A ironia
-    era central: usar o espa\xE7o mais conservador para promover a arte mais radical.
-    Inaugurado em 1911, o teatro custou mais de 3 milh\xF5es de francos-ouro."
-  funFact: "Villa-Lobos entrou ao palco de sapatos diferentes \u2014 gesto proposital
-    para provocar a plateia."
+  movement: Modernismo brasileiro
+  periodo: Fevereiro de 1922
+  tecnica: "Painel de contexto arquitet\xF4nico"
+  categoria: Arquitetura
+  relacao_com_a_semana_de_1922: "O evento ocorreu no teatro em 1922; esta cena n\xE3o
+    reconstitui fielmente seus interiores."
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: "O Theatro Municipal de S\xE3o Paulo recebeu exposi\xE7\xF5es, confer\xEAncias
+    e concertos."
+  fontes: https://acervo.museudalinguaportuguesa.org.br/acervos/museologico/8275/semana-de-arte-moderna-de-1922
+  description: "O Theatro Municipal de S\xE3o Paulo recebeu exposi\xE7\xF5es, confer\xEAncias
+    e concertos. Este museu virtual utiliza uma arquitetura pr\xF3pria para organizar
+    esse percurso hist\xF3rico."
+  funFact:
   paintingTexture: {fileID: 0}
   thumbnailSprite: {fileID: 0}
   audioGuide: {fileID: 0}

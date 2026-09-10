@@ -12,16 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
   m_Name: mario_ode_burgues
   m_EditorClassIdentifier: 
-  title: "Ode ao Burgu\xEAs"
+  title: "Ode ao burgu\xEAs"
   artist: "M\xE1rio de Andrade"
   year: 1922
-  movement: "Paulic\xE9ia Desvairada"
-  description: "Lido na noite de abertura da Semana, \xE9 um ataque feroz ao conservadorismo
-    da elite paulistana: 'Eu insulto o burgu\xEAs! O burgu\xEAs-n\xEDquel, o burgu\xEAs-burgu\xEAs!
-    / A digest\xE3o bem feita de S\xE3o Paulo! / O homem-curva! O homem-n\xE1degas!
-    / Prazer do burgu\xEAs: a solidez dos valores...'"
-  funFact: "M\xE1rio recitou este poema durante a Semana, provocando esc\xE2ndalo
-    t\xE3o grande que a pol\xEDcia foi chamada ao Teatro."
+  movement: Modernismo brasileiro
+  periodo: "1922 \u2014 publica\xE7\xE3o em Pauliceia desvairada"
+  tecnica: Poema; painel digital de leitura
+  categoria: Literatura
+  relacao_com_a_semana_de_1922: "Integra a produ\xE7\xE3o de um participante da Semana;
+    esta ficha n\xE3o afirma uma data ou circunst\xE2ncia de recita\xE7\xE3o durante
+    o evento."
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: "O poema usa repeti\xE7\xE3o e ironia para confrontar valores burgueses."
+  fontes: https://www.brasiliana.usp.br/handle/bbm/9055
+  description: "O poema usa repeti\xE7\xE3o e ironia para confrontar valores burgueses.
+    Seu tom provocador \xE9 um convite a observar a rela\xE7\xE3o entre forma po\xE9tica
+    e cr\xEDtica social."
+  funFact:
   paintingTexture: {fileID: 0}
   thumbnailSprite: {fileID: 0}
   audioGuide: {fileID: 0}

@@ -12,16 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
   m_Name: brecheret_eva
   m_EditorClassIdentifier: 
-  title: Eva
-  artist: Victor Brecheret
+  title: "Victor Brecheret: a figura no espa\xE7o"
+  artist: "Victor Brecheret (contexto hist\xF3rico)"
   year: 1922
-  movement: Modernismo
-  description: "Na escultura Eva, Brecheret explora o corpo feminino com uma estiliza\xE7\xE3o
-    que recusa o naturalismo acad\xEAmico. A figura sinuosa e geometrizada dialoga
-    com a escultura africana e a arte pr\xE9-colombiana \u2014 fontes que os modernistas
-    brasileiros reivindicavam como parte de uma identidade est\xE9tica pr\xF3pria."
-  funFact: "As esculturas de Brecheret foram transportadas \xE0s pressas para o Teatro
-    Municipal nas v\xE9speras da Semana."
+  movement: Modernismo brasileiro
+  periodo: "D\xE9cada de 1920 (contexto)"
+  tecnica: Painel digital sobre escultura
+  categoria: Escultura
+  relacao_com_a_semana_de_1922: "Brecheret teve esculturas na exposi\xE7\xE3o de
+    1922. As formas geom\xE9tricas desta cena s\xE3o cria\xE7\xF5es do projeto."
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: "Brecheret participou da renova\xE7\xE3o da escultura brasileira."
+  fontes: https://anitamalfatti.ieb.usp.br/1921-1922/
+  description: "Brecheret participou da renova\xE7\xE3o da escultura brasileira.
+    O painel convida a observar rela\xE7\xF5es entre massa, vazio e silhueta, sem
+    identificar o objeto cenogr\xE1fico como uma escultura hist\xF3rica."
+  funFact:
   paintingTexture: {fileID: 0}
   thumbnailSprite: {fileID: 0}
   audioGuide: {fileID: 0}

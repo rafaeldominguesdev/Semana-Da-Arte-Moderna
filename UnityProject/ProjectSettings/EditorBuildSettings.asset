@@ -8,4 +8,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MuseumScene.unity
     guid: e37a4f554d8db4cf8aa8fe95aaa105d7
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: d1fdb9693b0c347418e671b4cec1ccfb, type: 2}

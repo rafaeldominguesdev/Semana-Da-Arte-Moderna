@@ -141,12 +141,19 @@ namespace MuseumModerna
         {
             if (gyroController == null || cameraTransform == null) return;
 
+            var vr = MobileVrMode.Instance;
+            if (vr != null && vr.IsActive && (vr.WorldGuide.ConsumesGaze || vr.WorldGuide.MenuOpen))
+            {
+                _currentSpeed = 0;
+                return;
+            }
             bool isWalking = gyroController.IsLookingDown;
+            float speed = vr != null && vr.IsActive ? Mathf.Min(walkSpeed, 1.1f) : walkSpeed;
 
             if (isWalking)
             {
                 // Acelera suavemente até walkSpeed
-                _currentSpeed = Mathf.Lerp(_currentSpeed, walkSpeed, acceleration * Time.deltaTime);
+                _currentSpeed = Mathf.Lerp(_currentSpeed, speed, acceleration * Time.deltaTime);
             }
             else
             {

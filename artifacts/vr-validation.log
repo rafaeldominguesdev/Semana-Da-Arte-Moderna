@@ -1,0 +1,31 @@
+Validação do museu VR Box — Unity 2022.3.62f1 — 2026-09-08
+
+VR — Play Mode
+[VrValidation] Configuração e 6 cenários de dwell: PASS
+[VrValidation] Captura mono da interface worldspace: museum-vr-guide-editor.png
+[VrValidation] Integração sem toque: PASS (simulação no Editor; sem lentes físicas)
+
+Visita 2D — regressão
+[GuideValidation] 28 fichas e 12 cenários de estado: PASS
+[GuideValidation] Raycast nos 28 objetos: PASS
+[GuideValidation] Captura: museum-guide-desktop.png
+[GuideValidation] Captura: museum-guide-mobile.png
+[GuideValidation] Captura: museum-guide-landscape.png
+[GuideValidation] Captura: museum-guide-accessibility.png
+[GuideValidation] Texto maior, resumo e alto contraste: PASS
+[GuideValidation] Captura: museum-sculpture-gallery.png
+[GuideValidation] Integração: PASS
+
+Android — compilação
+[MobileVrSetup] Android preparado: Cardboard, landscape, OpenGLES3 e entrada manual em VR.
+[BuildScript] Compilando 1 cena(s): Assets/Scenes/MuseumScene.unity
+[BuildScript] BUILD OK. APK em: /Users/rafaeldomingues/SemanaArteModerna/artifacts/MuseumVR_Build/MuseudaSemanaArteModerna.apk (339 MB)
+
+APK inspecionado com aapt: minSdk 26, targetSdk 35, arm64-v8a.
+lib/arm64-v8a/libGfxPluginCardboard.so presente.
+zipfile.testzip(): aprovado (nenhuma entrada inválida).
+apksigner verify --verbose: Verifies; APK Signature Scheme v2: true.
+Tamanho do arquivo APK: 31.163.992 bytes (o BuildReport inclui tamanho total de construção).
+SHA-256: 6c143d4092fd64817ce9b52270cd46d11492029b5f2a8339efc24799a377f5ac
+git diff --check: aprovado.
+Sem execução em celular/visor físico.

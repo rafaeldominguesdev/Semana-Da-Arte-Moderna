@@ -12,16 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
   m_Name: graca_aranha_discurso
   m_EditorClassIdentifier: 
-  title: "A Emo\xE7\xE3o Est\xE9tica na Arte Moderna"
+  title: "A emo\xE7\xE3o est\xE9tica na arte moderna"
   artist: "Gra\xE7a Aranha"
   year: 1922
-  movement: Modernismo
-  description: "Gra\xE7a Aranha abriu a Semana com um discurso propondo a ruptura
-    com a Academia Brasileira de Letras e a cria\xE7\xE3o de uma arte brasileira
-    cosmopolita e livre. Sua autoridade liter\xE1ria \u2014 era membro fundador da
-    ABL \u2014 legitimou o evento junto \xE0 elite cultural de S\xE3o Paulo."
-  funFact: "Gra\xE7a Aranha tinha 56 anos em 1922 \u2014 o mais velho do grupo. Seu
-    prest\xEDgio viabilizou o Teatro Municipal."
+  movement: Modernismo brasileiro
+  periodo: 1922
+  tecnica: "Confer\xEAncia; painel digital"
+  categoria: Literatura
+  relacao_com_a_semana_de_1922: "Confer\xEAncia de abertura do primeiro festival,
+    em 13 de fevereiro de 1922."
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: "A confer\xEAncia integrou a abertura da Semana."
+  fontes: https://pantheon.ufrj.br/bitstream/11422/10813/1/278143.pdf
+  description: "A confer\xEAncia integrou a abertura da Semana. A palavra falada,
+    junto \xE0 m\xFAsica e \xE0s artes visuais, ajudava a apresentar as novas propostas
+    ao p\xFAblico."
+  funFact:
   paintingTexture: {fileID: 0}
   thumbnailSprite: {fileID: 0}
   audioGuide: {fileID: 0}

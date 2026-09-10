@@ -12,7 +12,6 @@ namespace MuseumModerna
     ///   3. Adicione um BoxCollider ao quadro para detecção por OverlapSphere.
     ///   4. Arraste o arquivo .asset correspondente para o campo paintingData.
     /// </summary>
-    [RequireComponent(typeof(Renderer))]
     public class PaintingExhibit : MonoBehaviour
     {
         [Tooltip("ScriptableObject com as informações deste quadro (título, artista, etc)")]
@@ -20,6 +19,7 @@ namespace MuseumModerna
 
         /// <summary>Dados deste quadro (título, artista, descrição, etc).</summary>
         public PaintingInfo PaintingData => paintingData;
+        public void SetData(PaintingInfo data) => paintingData = data;
 
         private void Awake()
         {

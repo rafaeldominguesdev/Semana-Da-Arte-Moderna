@@ -12,17 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
   m_Name: estudante_russa
   m_EditorClassIdentifier: 
-  title: A Estudante Russa
+  title: A estudante russa
   artist: Anita Malfatti
   year: 1915
-  movement: Expressionismo
-  description: "Pintada em Nova York durante os estudos com Homer Boss, A Estudante
-    Russa retrata uma mulher com formas angulares e pinceladas espessas. O retrato
-    psicol\xF3gico intenso reflete a influ\xEAncia do fauvismo franc\xEAs e do expressionismo
-    alem\xE3o que Anita absorveu durante anos de estudos na Europa e nos Estados
-    Unidos."
-  funFact: Anita foi a primeira artista brasileira a estudar Arte Moderna sistematicamente
-    na Europa e nos EUA.
+  movement: Modernismo brasileiro
+  periodo: c. 1915
+  tecnica: "\xD3leo sobre tela (obra de refer\xEAncia)"
+  categoria: Pintura
+  relacao_com_a_semana_de_1922: "A artista exp\xF4s na Semana; o painel situa sua
+    pesquisa de retrato anterior a 1922."
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: "O retrato de uma mulher sentada combina constru\xE7\xE3o expressiva e
+    \xE1reas de cor."
+  fontes: 'https://www.meer.com/mam/pt/artworks/92663
+
+    https://anitamalfatti.ieb.usp.br/1921-1922/'
+  description: "O retrato de uma mulher sentada combina constru\xE7\xE3o expressiva
+    e \xE1reas de cor. A figura permite discutir as rela\xE7\xF5es entre postura,
+    enquadramento e express\xE3o na pintura moderna."
+  funFact:
   paintingTexture: {fileID: 0}
   thumbnailSprite: {fileID: 0}
   audioGuide: {fileID: 0}

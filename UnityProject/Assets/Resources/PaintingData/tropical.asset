@@ -15,14 +15,23 @@ MonoBehaviour:
   title: Tropical
   artist: Anita Malfatti
   year: 1917
-  movement: Expressionismo
-  description: "Em Tropical, Anita cria uma paisagem brasileira com cores saturadas
-    e vibrantes. A vegeta\xE7\xE3o densa e exuberante \xE9 tratada com a liberdade
-    formal do expressionismo \u2014 formas simplificadas e cores emocionalmente intensas,
-    n\xE3o meramente descritivas. A obra celebra o tr\xF3pico como experi\xEAncia
-    sensorial radical."
-  funFact: "Esta obra foi exposta na pol\xEAmica exposi\xE7\xE3o de 1917 que gerou
-    o artigo destruidor de Monteiro Lobato."
+  movement: Modernismo brasileiro
+  periodo: 1917
+  tecnica: "\xD3leo sobre tela (obra de refer\xEAncia)"
+  categoria: Pintura
+  relacao_com_a_semana_de_1922: "Obra anterior \xE0 Semana, apresentada aqui como
+    contexto da trajet\xF3ria de uma de suas participantes."
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: "A presen\xE7a humana e os frutos aproximam figura e ambiente tropical."
+  fontes: 'https://pinacoteca.org.br/qrcode/p2-s19-9-b/
+
+    https://anitamalfatti.ieb.usp.br/1921-1922/'
+  description: "A presen\xE7a humana e os frutos aproximam figura e ambiente tropical.
+    O painel prop\xF5e uma leitura sobre representa\xE7\xE3o do Brasil e escolhas
+    de cor."
+  funFact:
   paintingTexture: {fileID: 0}
   thumbnailSprite: {fileID: 0}
   audioGuide: {fileID: 0}

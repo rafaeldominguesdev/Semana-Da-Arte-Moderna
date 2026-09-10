@@ -51,10 +51,10 @@ namespace MuseumModerna
 
         [Header("Eventos")]
         [Tooltip("Disparado quando o player se aproxima de um quadro")]
-        public UnityEvent<PaintingInfo> OnNearPainting;
+        public UnityEvent<PaintingInfo> OnNearPainting = new UnityEvent<PaintingInfo>();
 
         [Tooltip("Disparado quando o player se afasta de um quadro")]
-        public UnityEvent OnLeavePainting;
+        public UnityEvent OnLeavePainting = new UnityEvent();
 
         // ─── Propriedades Públicas ─────────────────────────────────────────────
 
@@ -223,16 +223,16 @@ namespace MuseumModerna
         {
             if (info == null) return;
             CurrentNearPainting = info;
-            SetState(PlayerState.Viewing);
+            // A mediação acompanha a visita sem bloquear o caminhar.
             OnNearPainting?.Invoke(info);
         }
 
         /// <summary>Chamado pelo GazeDwellInteraction quando o olhar sai do quadro.</summary>
         public void TriggerLeavePainting()
         {
-            if (State != PlayerState.Viewing) return;
+            if (CurrentNearPainting == null) return;
             CurrentNearPainting = null;
-            SetState(PlayerState.Walking);
+            if (State == PlayerState.Viewing) SetState(PlayerState.Walking);
             OnLeavePainting?.Invoke();
         }
 

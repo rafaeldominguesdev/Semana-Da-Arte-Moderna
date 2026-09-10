@@ -12,16 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
   m_Name: john_graz
   m_EditorClassIdentifier: 
-  title: "Composi\xE7\xE3o \u2014 Figura Feminina"
+  title: 'John Graz: pintura e artes decorativas'
   artist: John Graz
   year: 1922
-  movement: Modernismo
-  description: "John Graz, su\xED\xE7o naturalizado brasileiro, participou da Semana
-    com obras que sintetizavam o cubismo franc\xEAs com uma paleta mediterr\xE2nea.
-    Sua produ\xE7\xE3o posterior influenciou profundamente o design de interiores
-    e a arte decorativa brasileira das d\xE9cadas de 1920 e 1930."
-  funFact: "John Graz era cunhado de Tarsila do Amaral, estreitando os la\xE7os entre
-    os grupos modernistas."
+  movement: Modernismo brasileiro
+  periodo: 1922
+  tecnica: "Painel de media\xE7\xE3o digital"
+  categoria: Painel de artista
+  relacao_com_a_semana_de_1922: "John Graz participou da exposi\xE7\xE3o da Semana
+    de Arte Moderna."
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: "A presen\xE7a de John Graz amplia o conjunto de artistas lembrados pela
+    exposi\xE7\xE3o."
+  fontes: https://www.cultura.pr.gov.br/Noticia/Semana-de-Arte-Moderna-de-1922-e-tema-de-serie-de-posts-do-MON
+  description: "A presen\xE7a de John Graz amplia o conjunto de artistas lembrados
+    pela exposi\xE7\xE3o. Este painel convida a pensar a rela\xE7\xE3o entre pintura
+    e espa\xE7os de conviv\xEAncia."
+  funFact:
   paintingTexture: {fileID: 0}
   thumbnailSprite: {fileID: 0}
   audioGuide: {fileID: 0}

@@ -116,7 +116,14 @@ namespace MuseumModerna
         private Vector2 _arrowOriginalPos;
 
         // Flag: painel está visível?
-        private bool _panelVisible = false;
+        private MuseumGuidePanel guide;
+        public MuseumGuidePanel Guide => guide;
+        public void SetGuidePinned(bool pinned)
+        {
+            guide?.SetPinned(pinned);
+            if (MobileVrMode.Instance != null && MobileVrMode.Instance.IsActive)
+                MobileVrMode.Instance.WorldGuide.RefreshPin();
+        }
 
         // ─── Ciclo de Vida Unity ──────────────────────────────────────────────
 
@@ -133,12 +140,22 @@ namespace MuseumModerna
             if (paintingPanel != null)
                 paintingPanel.SetActive(false);
 
+            var scaler = GetComponent<CanvasScaler>();
+            if (scaler != null) scaler.referenceResolution = new Vector2(1280, 800);
+            guide = gameObject.AddComponent<MuseumGuidePanel>();
+            guide.Build(transform);
+            gameObject.AddComponent<MobileVrMode>().Initialize(this);
+            crosshairActiveColor = MuseumGuideTheme.Accent;
+            crosshairNormalColor = new Color(1, 1, 1, .6f);
+            if (crosshairImage != null) crosshairImage.rectTransform.sizeDelta = new Vector2(6, 6);
+            if (calibrateButton != null) calibrateButton.gameObject.SetActive(false);
+
             // Salva posição original da seta
             if (gazeArrow != null)
                 _arrowOriginalPos = gazeArrow.anchoredPosition;
 
             // Conecta botões
-            closeButton?.onClick.AddListener(HidePaintingPanel);
+            // O painel legado permanece inativo; a ficha possui seus próprios controles.
             calibrateButton?.onClick.AddListener(OnCalibratePressed);
 
             // Mostra o indicador de gaze por alguns segundos no início
@@ -166,45 +183,18 @@ namespace MuseumModerna
         public void ShowPaintingPanel(PaintingInfo paintingInfo)
         {
             if (paintingInfo == null) return;
-
-            // Preenche os textos com os dados do quadro
-            if (titleText != null)     titleText.text     = paintingInfo.title;
-            if (artistText != null)    artistText.text    = paintingInfo.artist;
-            if (yearText != null)      yearText.text      = paintingInfo.year.ToString();
-            if (descriptionText != null) descriptionText.text = paintingInfo.description;
-
-            // Define a miniatura se disponível
-            if (thumbnailImage != null && paintingInfo.thumbnailSprite != null)
-            {
-                thumbnailImage.sprite = paintingInfo.thumbnailSprite;
-                thumbnailImage.gameObject.SetActive(true);
-            }
-            else if (thumbnailImage != null)
-            {
-                thumbnailImage.gameObject.SetActive(false);
-            }
-
-            // Muda crosshair para ativo
+            if (MobileVrMode.Instance != null && MobileVrMode.Instance.IsActive)
+                MobileVrMode.Instance.WorldGuide.Show(paintingInfo);
+            else guide?.Show(paintingInfo);
             SetCrosshairActive(true);
-
-            // Esconde indicador de gaze durante visualização
             if (gazeIndicator != null) gazeIndicator.SetActive(false);
-
-            // Inicia fade in do painel
-            FadePanel(true);
-            _panelVisible = true;
         }
 
-        /// <summary>
-        /// Esconde o painel de informações com fade out suave.
-        /// </summary>
         public void HidePaintingPanel()
         {
-            if (!_panelVisible) return;
-
+            guide?.Hide();
+            MobileVrMode.Instance?.WorldGuide.Hide();
             SetCrosshairActive(false);
-            FadePanel(false);
-            _panelVisible = false;
         }
 
         // ─── Gaze Dwell Ring ──────────────────────────────────────────────────

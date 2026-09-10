@@ -12,16 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
   m_Name: brecheret_moema
   m_EditorClassIdentifier: 
-  title: Moema
-  artist: Victor Brecheret
-  year: 1921
-  movement: Modernismo
-  description: "Inspirado no poema \xE9pico 'Caramuru' (1781) de Santa Rita Dur\xE3o,
-    Moema retrata a \xEDndia Tapiuia que morreu afogada perseguindo o navegador que
-    a abandonou. Brecheret transforma o tema rom\xE2ntico numa composi\xE7\xE3o Art
-    D\xE9co de intensa dramaticidade horizontal."
-  funFact: "Brecheret tratou o tema ind\xEDgena com dignidade e monumentalidade,
-    revolucion\xE1rio para a \xE9poca."
+  title: "Escultura e mem\xF3ria p\xFAblica"
+  artist: "Victor Brecheret (contexto hist\xF3rico)"
+  year: 1922
+  movement: Modernismo brasileiro
+  periodo: "D\xE9cada de 1920 (contexto)"
+  tecnica: Painel digital sobre escultura
+  categoria: Escultura
+  relacao_com_a_semana_de_1922: "Brecheret teve esculturas na exposi\xE7\xE3o de
+    1922. As formas geom\xE9tricas desta cena s\xE3o cria\xE7\xF5es do projeto."
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: "Brecheret participou da renova\xE7\xE3o da escultura brasileira."
+  fontes: https://anitamalfatti.ieb.usp.br/1921-1922/
+  description: "Brecheret participou da renova\xE7\xE3o da escultura brasileira.
+    O painel convida a observar rela\xE7\xF5es entre massa, vazio e silhueta, sem
+    identificar o objeto cenogr\xE1fico como uma escultura hist\xF3rica."
+  funFact:
   paintingTexture: {fileID: 0}
   thumbnailSprite: {fileID: 0}
   audioGuide: {fileID: 0}

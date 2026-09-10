@@ -1,0 +1,63 @@
+{
+    "activeCameras": 1,
+    "activeRenderers": 319,
+    "renderedMeshInstances": 239,
+    "renderedTriangles": 162828,
+    "sharedMeshVertices": 222268,
+    "uniqueMeshes": 11,
+    "uniqueMaterials": 22,
+    "activeLights": 6,
+    "shadowCastingLights": 0,
+    "colliders": 364,
+    "exhibitRaycastsPassed": 28,
+    "doorwaysPassed": 4,
+    "captureSettings": "Mono Editor camera renders at 1600 x 1000, 62-degree vertical FOV and 4x MSAA; these settings are for visual inspection, not a mobile performance measurement.",
+    "sculptureTopHits": [
+        {
+            "exhibitId": "escultura_cenografica_2",
+            "collider": "Louvre_GazeProxy",
+            "localSurfaceAim": {
+                "x": -0.17166468501091004,
+                "y": 1.100000023841858,
+                "z": -0.09209629893302918
+            },
+            "localPhysicsHit": {
+                "x": -0.17166519165039063,
+                "y": 1.100000023841858,
+                "z": -0.09209663420915604
+            },
+            "rayDistance": 2.4999992847442629
+        },
+        {
+            "exhibitId": "escultura_cenografica_3",
+            "collider": "Louvre_GazeProxy",
+            "localSurfaceAim": {
+                "x": 0.1277887225151062,
+                "y": 1.100000023841858,
+                "z": -0.1082729697227478
+            },
+            "localPhysicsHit": {
+                "x": 0.12778854370117188,
+                "y": 1.100000023841858,
+                "z": -0.10827350616455078
+            },
+            "rayDistance": 2.5
+        },
+        {
+            "exhibitId": "escultura_cenografica_1",
+            "collider": "Louvre_GazeProxy",
+            "localSurfaceAim": {
+                "x": -0.25502464175224306,
+                "y": 1.100000023841858,
+                "z": -0.010879285633563996
+            },
+            "localPhysicsHit": {
+                "x": -0.25502490997314455,
+                "y": 1.100000023841858,
+                "z": -0.010879278182983399
+            },
+            "rayDistance": 2.500000238418579
+        }
+    ],
+    "scope": "Active saved scene geometry. Triangles count only each renderer's assigned submeshes, including its static-batch offset; vertices count once per shared mesh. These are not measured FPS, device draw calls or GPU time."
+}

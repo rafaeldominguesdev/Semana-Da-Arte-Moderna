@@ -125,7 +125,7 @@ namespace MuseumModerna
         private void OnValidate()
         {
             // Reconstrói preview ao alterar valores no Inspector
-            if (Application.isPlaying) return;
+            if (!enabled || Application.isPlaying) return;
             if (transform.Find("Frame_Top") != null)
                 BuildFrame();
         }

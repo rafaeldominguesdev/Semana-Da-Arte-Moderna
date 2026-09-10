@@ -15,12 +15,22 @@ MonoBehaviour:
   title: Manifesto da Poesia Pau-Brasil
   artist: Oswald de Andrade
   year: 1924
-  movement: Pau-Brasil
-  description: "Publicado dois anos ap\xF3s a Semana, o Manifesto Pau-Brasil crystallizou
-    os ideais do movimento: exportar cultura originalmente brasileira em vez de importar
-    modelos europeus. Pau-brasil, madeira explorada desde o s\xE9culo XVI, torna-se
-    met\xE1fora da riqueza cultural nativa que precisava ser redescoberta."
-  funFact: "'A poesia existe nos fatos.' \u2014 Oswald de Andrade, 1924."
+  movement: Modernismo brasileiro
+  periodo: "1924 \u2014 depois da Semana"
+  tecnica: "Manifesto liter\xE1rio; painel digital"
+  categoria: Literatura
+  relacao_com_a_semana_de_1922: "Publicado em 1924, \xE9 um desdobramento posterior.
+    N\xE3o deve ser apresentado como texto de 1922."
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: "O manifesto prop\xF5e uma reflex\xE3o sobre a produ\xE7\xE3o po\xE9tica
+    brasileira."
+  fontes: https://icaa.mfah.org/s/en/item/784909
+  description: "O manifesto prop\xF5e uma reflex\xE3o sobre a produ\xE7\xE3o po\xE9tica
+    brasileira. Sua circula\xE7\xE3o mostra como os debates modernistas seguiram
+    por publica\xE7\xF5es e novos programas art\xEDsticos."
+  funFact:
   paintingTexture: {fileID: 0}
   thumbnailSprite: {fileID: 0}
   audioGuide: {fileID: 0}

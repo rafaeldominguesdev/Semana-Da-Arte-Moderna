@@ -1,251 +1,96 @@
-# Museu da Semana de Arte Moderna 3D
-## Unity Setup Guide — Versão 2022.3 LTS
+# Museu virtual — Semana de Arte Moderna de 1922
 
----
+Unity 2022.3.62f1. Abra `Assets/Scenes/MuseumScene.unity` e pressione Play.
+A cena contém 28 objetos com ficha própria: 24 painéis didáticos, três esculturas
+cenográficas e uma vitrine documental. O arquivo Blender original foi preservado.
 
-## 📁 Estrutura do Projeto Unity
+## VR Box com celular
 
-```
-Assets/
-  Scripts/
-    Player/
-      GyroscopeController.cs   ← Controle de câmera por giroscópio
-      HeadGazeMovement.cs      ← Movimento ao olhar para baixo
-      PlayerController.cs      ← Script mestre (estado + detecção de quadros)
-    Museum/
-      ExhibitManager.cs        ← Gerencia quadros, highlighting, progresso
-      PaintingInfo.cs          ← ScriptableObject com dados de cada obra
-    UI/
-      UIManager.cs             ← Painel de info, crosshair, seta de gaze
-    Utils/
-      GyroCalibration.cs       ← Salva/carrega calibração via PlayerPrefs
-  Models/
-    versao0.2_sModerna.fbx     ← Modelo exportado do Blender (veja abaixo)
-  Resources/
-    PaintingData/              ← Arquivos .asset de cada PaintingInfo
-  Materials/
-  Prefabs/
-  Scenes/
-```
+O Android agora usa Cardboard para renderização estereoscópica e ajuste de lentes.
+A preparação abre antes de entrar no visor. Dentro dele, os controles funcionam
+pelo olhar, com páginas no lugar de rolagem. Consulte [uso e configuração do VR Box](VR_BOX.md).
 
----
+## Visita em prévia 2D
 
-## 🎨 Exportando o Blender para Unity
+- Direcione o centro da câmera a uma peça, a até 8 metros. A ficha aparece no canto inferior direito.
+- Ao desviar, ela desaparece com fade; paredes e objetos sólidos bloqueiam a detecção.
+- No computador, arraste com o botão direito para olhar. O movimento por olhar para baixo foi preservado.
+- Clique diretamente numa peça para fixar sua ficha. `F` ou o botão **Fixar** fixa/libera a ficha atual.
+- **Fechar** ou `Esc` fecha; a mesma ficha só volta depois de desviar e olhar novamente.
+- Role a ficha com mouse/toque; `Page Up` e `Page Down` também percorrem o texto.
+- **Opções da visita** permite desativar os painéis, ampliar o texto em três níveis,
+  resumir a descrição, aumentar o contraste, prolongar a leitura por cinco segundos
+  ou reduzir animações. Preferências são salvas localmente.
+- No celular, use o giroscópio ou arraste se o sensor não estiver disponível.
+  Um toque curto sobre a peça fixa sua ficha; arrastar não fixa.
 
-### Arquivo: `versao0.2_sModerna.blend`
+A leitura não interrompe o caminhar. A interface respeita `Screen.safeArea`, oferece
+rolagem e adapta a escala para retrato e paisagem. Botões usam navegação nativa uGUI
+por teclado e estados de foco. Não foi implementada integração com leitor de tela do sistema.
 
-### Passo 1 — Preparar no Blender
+## Conteúdo e autoria
 
-1. Abra o arquivo `versao0.2_sModerna.blend`
-2. Selecione **tudo** com `A`
-3. Aplique transformações: `Ctrl+A` → **All Transforms**
-4. Verifique se as normais estão corretas: Overlay → Face Orientation (azul = frente)
+As composições gráficas e os volumes 3D são criações cenográficas identificadas na
+ficha e nas legendas. Não são reproduções das obras históricas nem são atribuídos
+como originais aos artistas mencionados. As fichas distinguem o assunto histórico
+do objeto criado para a visita. A arquitetura é própria, sem alegação de reconstrução do Theatro Municipal.
 
-### Passo 2 — Exportar como FBX
+`Assets/Resources/MuseumCatalog.json` é o catálogo editorial revisado, com fontes
+por ficha. `PaintingInfo` contém título, autor, período, técnica, categoria,
+descrição, resumo, relação com 1922 e aviso de cenografia. Cada `PaintingExhibit`
+associa um objeto a um `.asset` em `Assets/Resources/PaintingData`.
 
-No Blender, vá em: **File → Export → FBX (.fbx)**
+As fichas contextualizam Anita Malfatti, Di Cavalcanti, Victor Brecheret, Vicente do
+Rego Monteiro, Zina Aita, Ferrignac, Villa-Lobos, Mário e Oswald de Andrade. Os
+textos de 1924 e 1925 e o monumento inaugurado em 1953 estão marcados como posteriores.
+Lasar Segall é apresentado como contexto, sem participação atribuída na Semana.
+Não há Abaporu no percurso.
 
-**Configurações obrigatórias:**
+Fontes de base: [IEB-USP](https://anitamalfatti.ieb.usp.br/1921-1922/),
+[MAM](https://mam.org.br/wp-content/uploads/2017/01/Release_AnitaMalfatti_MAM.pdf),
+[MASP](https://masp.org.br/en/collections/works/1920s-women),
+[Funarte](https://www.gov.br/funarte/pt-br/assuntos/noticias/todas-noticias/funarte-celebra-os-100-anos-da-semana-de-arte-moderna-e-realiza-eventos-ao-longo-de-2022)
+e [Brasiliana-USP](https://www.brasiliana.usp.br/handle/bbm/9055).
+As fontes específicas e ressalvas constam do catálogo.
 
-| Configuração | Valor |
-|---|---|
-| **Scale** | `1.00` |
-| **Apply Scalings** | `FBX All` |
-| **Forward** | `-Z Forward` |
-| **Up** | `Y Up` |
-| **Apply Unit** | ✅ Ligado |
-| **Apply Transform** | ✅ Ligado |
-| **Mesh → Smoothing** | `Face` |
-| **Mesh → Tangent Space** | ✅ Ligado |
-| **Armature** | Desligado (sem rig) |
-| **Bake Animation** | Desligado |
+## Manutenção
 
-Salve como: `Assets/Models/versao0.2_sModerna.fbx`
+1. Edite `MuseumCatalog.json`.
+2. Execute **MuseumModerna > Visita guiada > Atualizar fichas curatoriais**.
+3. Para sincronizar as legendas e a cenografia, execute **Aplicar à cena do museu**.
+   Esse comando abre e salva `MuseumScene`, substituindo apenas o grupo gerado
+   `Museum_GuidedExhibition`. Salve alterações abertas antes de usá-lo.
 
-### Passo 3 — Configurar no Unity
+Para uma nova peça, crie seu `PaintingInfo` e associe um `PaintingExhibit` ao objeto
+ou ao pai dos seus colliders. Um `Collider` sólido é necessário. Filhos são
+resolvidos pelo componente no ancestral; não é necessário colocar um Renderer
+no objeto pai. Objetos na layer `Ignore Raycast` não são selecionados.
 
-1. Clique no FBX importado no Project
-2. No Inspector, aba **Model**:
-   - Scale Factor: `1`
-   - Mesh Compression: `Off`
-   - Generate Colliders: ✅ (para as paredes)
-3. Aba **Materials**:
-   - Material Creation Mode: `Import via MaterialDescription`
-   - Clique **Extract Textures** e **Extract Materials**
+A referência de textura continua disponível em `PaintingInfo.paintingTexture`.
+Ao substituir uma composição por reprodução histórica autorizada, revise também
+o aviso e a proveniência da imagem. O instalador de cenografia gera composições
+próprias e deve ser adaptado para preservar uma substituição manual.
 
----
+## Implementação e validação
 
-## 🎮 Configuração de Layers
+- `GazeDwellInteraction`: câmera, oclusão, clique/toque e publicação dos eventos existentes.
+- `GuideFocusState`: estado único, fixação, fechamento, tempo de permanência e desativação.
+- `MuseumGuidePanel` / `MuseumGuideTheme`: interface nativa, escala, animação e preferências.
+- `GuidedMuseumSetup`: aplica a expografia sobre a cena existente; mantém bancos e arquitetura.
+- `CuratorialCatalog`: sincroniza o JSON com os assets, preservando GUIDs e referências de mídia.
 
-Crie estas layers em **Edit → Project Settings → Tags and Layers**:
+Validação automatizada no Unity (não requer instalação de pacote de testes):
 
-| Layer # | Nome | Uso |
-|---|---|---|
-| 6 | `Player` | O GameObject do player |
-| 7 | `Wall` | Paredes e objetos sólidos |
-| 8 | `Painting` | Quadros interativos |
-| 9 | `Interactive` | Outros objetos interativos |
-
-**Configuração de colisões** (Physics Matrix):
-- `Player` NÃO colide com `Painting` (passa reto pelos quadros)
-- `Player` COLIDE com `Wall`
-
----
-
-## 🏗️ Hierarquia de GameObjects na Cena
-
-```
-Scene
-├── [Lighting]
-│   ├── Directional Light
-│   └── Point Lights (nos quadros)
-│
-├── Museum
-│   └── versao0.2_sModerna (FBX importado)
-│       ├── Sala (Mesh + MeshCollider, Layer: Wall)
-│       ├── Quadro_Abaporu (Layer: Painting)
-│       │   └── → componente: PaintingExhibit → PaintingData: Abaporu.asset
-│       ├── Quadro_Estudante (Layer: Painting)
-│       └── ... (outros quadros)
-│
-├── Player  ← Tag: "Player", Layer: Player
-│   ├── CharacterController (Height: 1.7, Radius: 0.3)
-│   ├── PlayerController.cs
-│   ├── HeadGazeMovement.cs
-│   └── CameraRig  ← Pivot da câmera (Y offset: 1.6)
-│       └── Main Camera
-│           └── GyroscopeController.cs
-│
-├── Managers
-│   ├── ExhibitManager.cs
-│   └── UIManager (Canvas)
-│
-└── Canvas (Screen Space Overlay, CanvasScaler: Scale With Screen Size 1080x1920)
-    ├── Crosshair (Image, centro da tela, 20x20px)
-    ├── GazeIndicator
-    │   └── ArrowImage (↓)
-    └── PaintingPanel (CanvasGroup)
-        ├── Background (Image, semi-transparente)
-        ├── ThumbnailImage
-        ├── TitleText (TextMeshPro)
-        ├── ArtistText (TextMeshPro)
-        ├── YearText (TextMeshPro)
-        ├── DescriptionText (TextMeshPro, com ScrollRect)
-        ├── CloseButton
-        └── CalibrateButton
+```sh
+/Applications/Unity/Hub/Editor/2022.3.62f1/Unity.app/Contents/MacOS/Unity \
+  -batchmode -projectPath "$PWD/UnityProject" \
+  -executeMethod MuseumModerna.GuideValidation.Run \
+  -logFile /tmp/museum-guide-validation.log
 ```
 
----
-
-## ⚙️ Configuração da Câmera para Giroscópio
-
-1. O **Player** GameObject tem `CharacterController`
-2. A câmera está em um filho chamado `CameraRig`
-3. `CameraRig.localPosition = (0, 1.6, 0)` — altura dos olhos
-4. `GyroscopeController` fica na **Main Camera** (não no Player raiz)
-5. `HeadGazeMovement` usa `cameraTransform` para a direção de movimento
-
-**Importante:** NÃO rotacione o Player GameObject — apenas a câmera gira.
-O movimento sempre vai para onde a câmera aponta (projetado no plano XZ).
-
----
-
-## 📱 Configurações do Build Android
-
-**Edit → Project Settings → Player → Android:**
-
-| Configuração | Valor |
-|---|---|
-| Minimum API Level | `API 26 (Android 8.0)` |
-| Target API Level | `API 34` |
-| Scripting Backend | `IL2CPP` |
-| ARM64 | ✅ |
-| Internet Access | `Not Required` |
-| Write Permission | `External (SDCard)` — apenas se necessário |
-
-**Edit → Project Settings → Quality:**
-- Use o perfil "Medium" para mobile
-- Disable VSync (use Application.targetFrameRate = 60)
-
----
-
-## 🗝️ PlayerPrefs Keys Documentadas
-
-| Chave | Tipo | Descrição |
-|---|---|---|
-| `MuseumModerna_CalibX` | float | Quaternion X do offset de calibração |
-| `MuseumModerna_CalibY` | float | Quaternion Y do offset de calibração |
-| `MuseumModerna_CalibZ` | float | Quaternion Z do offset de calibração |
-| `MuseumModerna_CalibW` | float | Quaternion W do offset de calibração |
-
----
-
-## 🖼️ Criando Dados de Obras (PaintingInfo)
-
-Para cada quadro na cena:
-
-1. Botão direito na pasta `Assets/Resources/PaintingData`
-2. **Create → Museum → Painting Info**
-3. Preencha: título, artista, ano, descrição
-4. Arraste a textura da obra para `paintingTexture`
-5. No GameObject do quadro na cena, adicione o componente `PaintingExhibit`
-6. Arraste o `.asset` criado para o campo `PaintingData`
-7. Coloque o quadro na **Layer: Painting**
-8. Adicione um `BoxCollider` ao quadro (para detecção por OverlapSphere)
-
----
-
-## 🎨 Obras Pré-configuradas — Semana de Arte Moderna 1922
-
-| Arquivo Asset | Obra | Artista | Ano |
-|---|---|---|---|
-| `Abaporu.asset` | O Abaporu | Tarsila do Amaral | 1928 |
-| `Estudante.asset` | A Estudante | Anita Malfatti | 1915 |
-| `Autorretrato.asset` | Autorretrato | Anita Malfatti | 1923 |
-| `OperariasPortinari.asset` | Operários | Cândido Portinari | 1934 |
-| `CarnavalEstacio.asset` | Carnaval em Madureira | Di Cavalcanti | 1924 |
-
----
-
-## 🧪 Testando no Editor (Sem Giroscópio)
-
-O `GyroscopeController` detecta automaticamente se há giroscópio:
-- **Com giroscópio (Android):** usa `Input.gyro`
-- **Sem giroscópio (Editor/PC):** usa mouse (botão direito) para rotar câmera
-
-Para testar o head-gaze walking no Editor:
-1. Clique com o **botão direito** e arraste para baixo
-2. Quando o pitch atingir -30° → player começa a andar
-3. Observe o Gizmo vermelho no Scene View
-
----
-
-## 🚀 Build e Deploy
-
-```bash
-# Na pasta do projeto Unity (via terminal)
-# Use Unity Hub ou linha de comando:
-
-# Build Android (APK)
-/Applications/Unity/Hub/Editor/2022.3.x/Unity.app/Contents/MacOS/Unity \
-  -batchmode \
-  -quit \
-  -projectPath /caminho/para/UnityProject \
-  -buildTarget Android \
-  -executeMethod BuildScript.BuildAndroid
-
-# Instalar no dispositivo
-adb install -r build/SemanaArteModerna.apk
-```
-
----
-
-## 🔧 Solução de Problemas
-
-| Problema | Solução |
-|---|---|
-| Câmera gira ao contrário | Em GyroscopeController.cs, inverta o sinal: `new Quaternion(-raw.x, -raw.y, raw.z, raw.w)` |
-| Player atravessa paredes | Verifique se as paredes estão na Layer `Wall` e se o CharacterController está configurado |
-| Quadros não são detectados | Verifique se os quadros estão na Layer `Painting` e têm Collider |
-| Giroscópio não calibra | Segure o celular em posição neutra e pressione "Calibrar" |
-| Painel UI não aparece | Verifique se UIManager tem todas as referências no Inspector |
+Execute a partir da raiz do repositório, sem outra instância do mesmo projeto.
+Não use `-quit` nesta validação: ela entra em Play Mode e encerra automaticamente.
+Verifica completude das fichas, transições de estado, oclusão, os 28 objetos da cena,
+abertura/fechamento, fixação e navegação. Gera capturas desktop e retrato em `artifacts/`.
+O teste usa a renderização do Unity; avaliação em aparelho físico continua necessária
+para giroscópio, recortes de tela, conforto de leitura e desempenho móvel.

@@ -1,45 +1,31 @@
 using UnityEditor;
+using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using System.IO;
 
 public class BuildScript
 {
+    [MenuItem("Museum/VR Box/Gerar APK Android")]
     public static void BuildAndroid()
     {
-        string desktopPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
-        string outputDir   = Path.Combine(desktopPath, "MuseumVR_Build");
+        string projectPath = Directory.GetParent(Application.dataPath).FullName;
+        string workspacePath = Directory.GetParent(projectPath).FullName;
+        string outputDir   = Path.Combine(workspacePath, "artifacts", "MuseumVR_Build");
         string apkPath     = Path.Combine(outputDir, "MuseudaSemanaArteModerna.apk");
 
         Directory.CreateDirectory(outputDir);
 
-        // ── Aponta SDK/NDK/JDK embutidos do Unity Hub ────────────────────────
-        const string unityAndroid =
-            "/Applications/Unity/Hub/Editor/2022.3.62f1/PlaybackEngines/AndroidPlayer";
-        EditorPrefs.SetString("AndroidSdkRoot",  Path.Combine(unityAndroid, "SDK"));
-        EditorPrefs.SetString("AndroidNdkRoot",  Path.Combine(unityAndroid, "NDK"));
-        EditorPrefs.SetString("JdkPath",         Path.Combine(unityAndroid, "OpenJDK"));
-
-        // ── Configurar Android ────────────────────────────────────────────────
+        // Usa SDK/NDK/JDK configurados no Unity, inclusive os módulos do Unity Hub.
         PlayerSettings.companyName = "SemanaArteModerna";
         PlayerSettings.productName = "Museu da Semana de Arte Moderna";
-        PlayerSettings.applicationIdentifier = "com.SemanaArteModerna.MuseudaSemanaArteModerna";
-        PlayerSettings.Android.minSdkVersion    = AndroidSdkVersions.AndroidApiLevel26;
-        PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevel34;
-        PlayerSettings.SetScriptingBackend(BuildTargetGroup.Android, ScriptingImplementation.IL2CPP);
-        PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
+        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, "com.SemanaArteModerna.MuseudaSemanaArteModerna");
+        EditorUserBuildSettings.buildAppBundle = false;
+        EditorUserBuildSettings.exportAsGoogleAndroidProject = false;
+        MobileVrSetup.Apply();
 
-        // Criar uma cena se não existir nenhuma
+        // Um APK do museu deve conter a cena real, nunca uma cena padrão vazia.
         string[] scenes = GetScenes();
-        if (scenes.Length == 0)
-        {
-            Debug.Log("[BuildScript] Nenhuma cena encontrada. Criando cena padrão...");
-            Directory.CreateDirectory("Assets/Scenes");
-            var newScene = EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects, NewSceneMode.Single);
-            EditorSceneManager.SaveScene(newScene, "Assets/Scenes/SampleScene.unity");
-            scenes = new string[] { "Assets/Scenes/SampleScene.unity" };
-        }
 
         Debug.Log($"[BuildScript] Compilando {scenes.Length} cena(s): {string.Join(", ", scenes)}");
 
@@ -56,27 +42,19 @@ public class BuildScript
 
         if (summary.result == BuildResult.Succeeded)
         {
-            Debug.Log($"[BuildScript] ✅ BUILD OK! APK em: {Path.GetFullPath(apkPath)} ({summary.totalSize / 1024 / 1024} MB)");
+            Debug.Log($"[BuildScript] BUILD OK. APK em: {Path.GetFullPath(apkPath)} ({summary.totalSize / 1024 / 1024} MB)");
         }
         else
         {
-            Debug.LogError($"[BuildScript] ❌ BUILD FALHOU: {summary.totalErrors} erros");
-            EditorApplication.Exit(1);
+            throw new BuildFailedException($"BUILD FALHOU: {summary.totalErrors} erros ({summary.result}).");
         }
     }
 
     static string[] GetScenes()
     {
-        var scenes = new System.Collections.Generic.List<string>();
-        foreach (var s in EditorBuildSettings.scenes)
-            if (s.enabled && File.Exists(s.path)) scenes.Add(s.path);
-
-        if (scenes.Count == 0)
-        {
-            string[] guids = AssetDatabase.FindAssets("t:Scene", new[] { "Assets" });
-            foreach (var g in guids)
-                scenes.Add(AssetDatabase.GUIDToAssetPath(g));
-        }
-        return scenes.ToArray();
+        const string museumScene = "Assets/Scenes/MuseumScene.unity";
+        if (!File.Exists(museumScene))
+            throw new BuildFailedException("Cena do museu não encontrada: " + museumScene);
+        return new[] { museumScene };
     }
 }

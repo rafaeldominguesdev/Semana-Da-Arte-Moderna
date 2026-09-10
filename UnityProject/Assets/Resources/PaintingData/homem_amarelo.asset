@@ -12,17 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
   m_Name: homem_amarelo
   m_EditorClassIdentifier: 
-  title: O Homem Amarelo
+  title: O homem amarelo
   artist: Anita Malfatti
   year: 1916
-  movement: Expressionismo
-  description: "Uma das obras mais radicais de Anita, O Homem Amarelo demonstra o
-    dom\xEDnio das t\xE9cnicas expressionistas aprendidas na Alemanha e em Nova York.
-    As cores anti-naturalistas \u2014 rosto amarelo-esverdeado, olhos azuis intensos
-    \u2014 foram consideradas um esc\xE2ndalo pela cr\xEDtica de S\xE3o Paulo em
-    1917."
-  funFact: "O cr\xEDtico Monteiro Lobato atacou esta obra em 'Paranoia ou Mistifica\xE7\xE3o?'
-    (1917), tornando Anita a hero\xEDna do Modernismo."
+  movement: Modernismo brasileiro
+  periodo: 1915/1916
+  tecnica: "\xD3leo sobre tela (obra de refer\xEAncia)"
+  categoria: Pintura
+  relacao_com_a_semana_de_1922: "Anita participou da exposi\xE7\xE3o de 1922; sua
+    produ\xE7\xE3o anterior ajuda a compreender os debates que antecederam o evento."
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: "O retrato explora contrastes de cor e distor\xE7\xF5es expressivas da
+    figura."
+  fontes: 'https://anitamalfatti.ieb.usp.br/1921-1922/
+
+    https://mam.org.br/wp-content/uploads/2017/01/Release_AnitaMalfatti_MAM.pdf'
+  description: "O retrato explora contrastes de cor e distor\xE7\xF5es expressivas
+    da figura. A pintura convida a observar como a cor pode construir uma presen\xE7a,
+    al\xE9m de descrever a apar\xEAncia."
+  funFact:
   paintingTexture: {fileID: 0}
   thumbnailSprite: {fileID: 0}
   audioGuide: {fileID: 0}

@@ -12,16 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
   m_Name: villa_lobos_lenda
   m_EditorClassIdentifier: 
-  title: Lenda do Caboclo
+  title: "Villa-Lobos: m\xFAsica em 1922"
   artist: Heitor Villa-Lobos
-  year: 1920
-  movement: Nacionalismo Musical
-  description: "Uma das pe\xE7as para piano que Villa-Lobos apresentou na Semana.
-    A obra captura a atmosfera do interior brasileiro \u2014 o caboclo (mesti\xE7o
-    de branco e \xEDndio) como figura m\xEDtica \u2014 atrav\xE9s de uma linguagem
-    que funde tradi\xE7\xE3o europeia e melodia popular."
-  funFact: "Villa-Lobos comp\xF4s mais de 2.000 obras, tornando-se o compositor mais
-    prol\xEDfico das Am\xE9ricas."
+  year: 1922
+  movement: Modernismo brasileiro
+  periodo: 1922
+  tecnica: "Painel tipogr\xE1fico sobre m\xFAsica de c\xE2mara"
+  categoria: "M\xFAsica"
+  relacao_com_a_semana_de_1922: "Villa-Lobos participou do evento com repert\xF3rio
+    musical; o painel n\xE3o representa uma partitura nem uma obra chamada Lenda."
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: "A programa\xE7\xE3o musical teve papel central nos encontros de 1922."
+  fontes: https://www.gov.br/funarte/pt-br/assuntos/noticias/todas-noticias/funarte-celebra-os-100-anos-da-semana-de-arte-moderna-e-realiza-eventos-ao-longo-de-2022
+  description: "A programa\xE7\xE3o musical teve papel central nos encontros de 1922.
+    Este painel prop\xF5e imaginar a conviv\xEAncia entre concerto, leitura e exposi\xE7\xE3o
+    visual."
+  funFact:
   paintingTexture: {fileID: 0}
   thumbnailSprite: {fileID: 0}
   audioGuide: {fileID: 0}

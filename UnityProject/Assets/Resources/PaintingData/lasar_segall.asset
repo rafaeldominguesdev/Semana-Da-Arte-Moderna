@@ -12,16 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
   m_Name: lasar_segall
   m_EditorClassIdentifier: 
-  title: Prisioneiro
+  title: 'Lasar Segall: outros caminhos modernos'
   artist: Lasar Segall
-  year: 1918
-  movement: Expressionismo
-  description: "Lasar Segall, artista lituano radicado no Brasil, trouxe para S\xE3o
-    Paulo as t\xE9cnicas expressionistas europeias. Prisioneiro retrata com ang\xFAstia
-    a condi\xE7\xE3o humana aprisionada \u2014 leitura poss\xEDvel como met\xE1fora
-    da imigra\xE7\xE3o e do ex\xEDlio que o pr\xF3prio artista vivenciou."
-  funFact: "Segall realizou a primeira exposi\xE7\xE3o de Arte Moderna no Brasil
-    em 1913 \u2014 antes da Semana de 22."
+  year: 1913
+  movement: Modernismo brasileiro
+  periodo: "1913 e d\xE9cada de 1920"
+  tecnica: "Painel de contexto art\xEDstico"
+  categoria: Contexto
+  relacao_com_a_semana_de_1922: "Segall n\xE3o participou da Semana de 1922. Sua
+    presen\xE7a aqui amplia o contexto do modernismo."
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: "O percurso de Segall ajuda a situar a renova\xE7\xE3o art\xEDstica al\xE9m
+    de um \xFAnico evento."
+  fontes: https://www.gov.br/museus/pt-br/museus-ibram/museu-lasar-segall/assuntos/exposicao
+  description: "O percurso de Segall ajuda a situar a renova\xE7\xE3o art\xEDstica
+    al\xE9m de um \xFAnico evento. Suas exposi\xE7\xF5es de 1913 no Brasil antecedem
+    a Semana."
+  funFact:
   paintingTexture: {fileID: 0}
   thumbnailSprite: {fileID: 0}
   audioGuide: {fileID: 0}

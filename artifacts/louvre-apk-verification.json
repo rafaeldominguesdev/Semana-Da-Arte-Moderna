@@ -1,0 +1,18 @@
+{
+  "verified_on": "2026-09-10",
+  "apk_size_bytes": 33578493,
+  "sha256": "2da555e7923e996cbfb92f3a573fbdd78d91e71c1d147b90e4d0732e871cd677",
+  "scene_markers": {
+    "Museum_LouvreStyle": true,
+    "Louvre_GazeProxy": true,
+    "Expografia_Curva": true
+  },
+  "louvre_runtime_in_metadata": true,
+  "cardboard_native_library": true,
+  "zip_integrity": "passed",
+  "signature_v2": "verified",
+  "min_sdk": 26,
+  "target_sdk": 35,
+  "architecture": "arm64-v8a",
+  "runtime_source_newer_than_apk": []
+}

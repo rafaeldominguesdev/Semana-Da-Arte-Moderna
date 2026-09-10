@@ -1,0 +1,9 @@
+[GuideValidation] 28 fichas e 12 cenários de estado: PASS
+[GuideValidation] Raycast nos 28 objetos: PASS
+[GuideValidation] Captura: museum-guide-desktop.png
+[GuideValidation] Captura: museum-guide-mobile.png
+[GuideValidation] Captura: museum-guide-landscape.png
+[GuideValidation] Captura: museum-guide-accessibility.png
+[GuideValidation] Texto maior, resumo e alto contraste: PASS
+[GuideValidation] Captura: museum-sculpture-gallery.png
+[GuideValidation] Integração: PASS

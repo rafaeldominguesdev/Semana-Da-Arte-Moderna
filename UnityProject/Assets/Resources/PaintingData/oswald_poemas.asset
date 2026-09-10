@@ -12,16 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
   m_Name: oswald_poemas
   m_EditorClassIdentifier: 
-  title: "Poemas \u2014 Brazilwood"
+  title: Pau Brasil
   artist: Oswald de Andrade
-  year: 1922
-  movement: Modernismo
-  description: "Oswald usou na Semana sua t\xE9cnica de extrema condensa\xE7\xE3o
-    \u2014 poemas-telegrama, poemas-piada. Exemplo: 'Erro de Portugu\xEAs': 'Quando
-    o portugu\xEAs chegou / Debaixo duma bruta chuva / Vestiu o \xEDndio / Que pena!
-    / Fosse uma manh\xE3 de sol / O \xEDndio tinha despido / O portugu\xEAs.'"
-  funFact: "Oswald e M\xE1rio: o extrovertido provocador vs. o introspectivo erudito
-    \u2014 os dois polos do Modernismo brasileiro."
+  year: 1925
+  movement: Modernismo brasileiro
+  periodo: "1925 \u2014 depois da Semana"
+  tecnica: Livro de poesia; painel digital
+  categoria: Literatura
+  relacao_com_a_semana_de_1922: "Oswald participou da Semana, mas este livro foi
+    publicado em 1925. A data de participa\xE7\xE3o do autor n\xE3o \xE9 a data da
+    obra."
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: "O livro re\xFAne poemas breves que exploram s\xEDntese e humor."
+  fontes: 'https://acervo.museudalinguaportuguesa.org.br/acervos/8365/pau-brasil
+
+    https://icaa.mfah.org/s/en/item/784909'
+  description: "O livro re\xFAne poemas breves que exploram s\xEDntese e humor. O
+    painel apresenta a publica\xE7\xE3o como parte da continuidade do modernismo
+    na d\xE9cada de 1920."
+  funFact:
   paintingTexture: {fileID: 0}
   thumbnailSprite: {fileID: 0}
   audioGuide: {fileID: 0}

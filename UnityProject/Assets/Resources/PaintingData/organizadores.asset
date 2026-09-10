@@ -12,17 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
   m_Name: organizadores
   m_EditorClassIdentifier: 
-  title: Os Organizadores da Semana
-  artist: "Em\xEDlio di Cavalcanti \u2014 artista e idealizador"
+  title: "Uma exposi\xE7\xE3o, muitas vozes"
+  artist: Participantes da Semana de Arte Moderna
   year: 1922
-  movement: Modernismo
-  description: "Di Cavalcanti foi o principal articulador da Semana, convencendo
-    Gra\xE7a Aranha (escritor consagrado da ABL) a abrir o evento no Teatro Municipal.
-    M\xE1rio de Andrade trouxe a dimens\xE3o liter\xE1ria e musical. Paulo Prado
-    financiou o evento. Juntos, eles transformaram uma noite de gala burguesa num
-    manifesto revolucion\xE1rio."
-  funFact: "Di Cavalcanti criou a capa do programa da Semana \u2014 hoje um \xEDcone
-    do design gr\xE1fico brasileiro."
+  movement: Modernismo brasileiro
+  periodo: 13 a 17 de fevereiro de 1922
+  tecnica: "Painel de media\xE7\xE3o digital"
+  categoria: "Hist\xF3ria"
+  relacao_com_a_semana_de_1922: O painel apresenta a Semana como encontro cultural
+    e ponto de partida para debates.
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: "Pintura, escultura, m\xFAsica e literatura se encontraram no mesmo evento."
+  fontes: https://acervo.museudalinguaportuguesa.org.br/acervos/museologico/8275/semana-de-arte-moderna-de-1922
+  description: "Pintura, escultura, m\xFAsica e literatura se encontraram no mesmo
+    evento. A reuni\xE3o de linguagens n\xE3o significa que todos os participantes
+    defendessem uma \xFAnica forma de arte."
+  funFact:
   paintingTexture: {fileID: 0}
   thumbnailSprite: {fileID: 0}
   audioGuide: {fileID: 0}

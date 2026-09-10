@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace MuseumModerna
 {
@@ -77,6 +78,7 @@ namespace MuseumModerna
         private float _touchPitch = 0f;  // Rotação vertical (mouse/touch)
         private Vector2 _lastTouchPos;
         private bool _isDragging = false;
+        private bool _touchStartedOnUI;
 
         // ─── Ciclo de Vida Unity ──────────────────────────────────────────────
 
@@ -90,6 +92,14 @@ namespace MuseumModerna
 
         private void Update()
         {
+            if (MobileVrMode.Instance != null && MobileVrMode.Instance.HasHeadTracking)
+            {
+                // O TrackedPoseDriver do SDK controla a câmera; não somar Input.gyro à pose XR.
+                CurrentLookDirection = transform.forward;
+                CurrentPitchDegrees = Mathf.Asin(Mathf.Clamp(transform.forward.y, -1f, 1f)) * Mathf.Rad2Deg;
+                IsLookingDown = CurrentPitchDegrees < lookDownThreshold;
+                return;
+            }
             if (IsUsingGyroscope)
             {
                 UpdateGyroscope();
@@ -183,7 +193,7 @@ namespace MuseumModerna
         {
 #if UNITY_EDITOR || UNITY_STANDALONE
             // No Editor/PC: usa o mouse com botão direito pressionado
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1) && (EventSystem.current == null || !EventSystem.current.IsPointerOverGameObject()))
             {
                 _isDragging = true;
                 _lastTouchPos = Input.mousePosition;
@@ -208,8 +218,9 @@ namespace MuseumModerna
                 if (touch.phase == TouchPhase.Began)
                 {
                     _lastTouchPos = touch.position;
+                    _touchStartedOnUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(touch.fingerId);
                 }
-                else if (touch.phase == TouchPhase.Moved)
+                else if (touch.phase == TouchPhase.Moved && !_touchStartedOnUI)
                 {
                     Vector2 delta = touch.position - _lastTouchPos;
                     _touchYaw   += delta.x * touchSensitivity;
@@ -230,8 +241,28 @@ namespace MuseumModerna
         /// dispositivo agora se torna o "centro" (olhar para frente).
         /// Salva o offset no PlayerPrefs para persistir entre sessões.
         /// </summary>
+        public void ResumeFromCurrentPose()
+        {
+            _currentRotation = _targetRotation = transform.localRotation;
+            if (IsUsingGyroscope)
+            {
+                var raw = Input.gyro.attitude;
+                var converted = GyroToUnity * new Quaternion(raw.x, raw.y, -raw.z, -raw.w);
+                _calibrationOffset = converted * Quaternion.Inverse(_currentRotation);
+            }
+            _touchYaw = transform.localEulerAngles.y;
+            _touchPitch = transform.localEulerAngles.x;
+            if (_touchPitch > 180) _touchPitch -= 360;
+            _isDragging = false;
+        }
+
         public void Calibrate()
         {
+            if (MobileVrMode.Instance != null && MobileVrMode.Instance.IsActive)
+            {
+                MobileVrMode.Instance.Recenter();
+                return;
+            }
             if (IsUsingGyroscope)
             {
                 // A calibração captura a rotação atual e a define como "neutro"

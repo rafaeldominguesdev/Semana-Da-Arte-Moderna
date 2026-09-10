@@ -12,16 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14256d4cfae25415f84295e8fa960519, type: 3}
   m_Name: ronald_carvalho
   m_EditorClassIdentifier: 
-  title: "Poemas \u2014 Toda a Am\xE9rica"
+  title: 'Ronald de Carvalho: a palavra em cena'
   artist: Ronald de Carvalho
   year: 1922
-  movement: Modernismo
-  description: "Ronald de Carvalho foi o \xFAnico participante que integrou tanto
-    a Semana de 22 quanto os modernistas cariocas, servindo de ponte entre os dois
-    centros culturais. Em 'Toda a Am\xE9rica', busca uma epopeia pan-americana que
-    celebre as origens ind\xEDgenas e a natureza exuberante do continente."
-  funFact: "Ronald de Carvalho foi um dos primeiros a traduzir Guillaume Apollinaire
-    para o portugu\xEAs."
+  movement: Modernismo brasileiro
+  periodo: 1922
+  tecnica: "Painel sobre poesia e confer\xEAncia"
+  categoria: Literatura
+  relacao_com_a_semana_de_1922: "Consta no programa de 1922 como participante, inclusive
+    com confer\xEAncia sobre pintura e escultura."
+  obra_historica_ou_reinterpretacao: "Painel did\xE1tico criado para este museu virtual.
+    A composi\xE7\xE3o visual \xE9 cenogr\xE1fica; n\xE3o reproduz uma obra original.
+    Autor e per\xEDodo informados referem-se ao assunto hist\xF3rico."
+  resumo: "Ronald de Carvalho participou da programa\xE7\xE3o liter\xE1ria do evento."
+  fontes: https://pantheon.ufrj.br/bitstream/11422/10813/1/278143.pdf
+  description: "Ronald de Carvalho participou da programa\xE7\xE3o liter\xE1ria do
+    evento. O painel destaca a escuta como parte da visita, ao lado da observa\xE7\xE3o
+    de imagens."
+  funFact:
   paintingTexture: {fileID: 0}
   thumbnailSprite: {fileID: 0}
   audioGuide: {fileID: 0}
